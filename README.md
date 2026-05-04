@@ -67,7 +67,7 @@ kadabra/
 
 ## Flujo de la aplicación
 
-### 1. Detección de idioma
+### Detección de idioma
 
 ```
 Usuario visita /
@@ -82,7 +82,7 @@ index.astro (script cliente)
 
 La ruta raíz `/` no renderiza contenido — solo ejecuta un script `is:inline` que lee `navigator.language` y redirige inmediatamente.
 
-### 2. Resolución de ruta e idioma
+### Resolución de ruta e idioma
 
 ```
 URL: /es  o  /en
@@ -100,7 +100,7 @@ getTranslations(lang)  ──►  importa es.json o en.json (import estático, H
 Renderiza página con textos del idioma correspondiente
 ```
 
-### 3. Tema oscuro / claro
+### Tema oscuro / claro
 
 ```
 Carga de página
@@ -122,7 +122,7 @@ Click en toggle de tema (navbar)
 classList.toggle("dark")  +  localStorage.setItem("theme", ...)
 ```
 
-### 4. Cambio de idioma
+### Cambio de idioma
 
 ```
 Click en ES o EN (navbar)
