@@ -10,15 +10,17 @@
     "contact": "Contacto",
     "cta": "Cotizar Proyecto"
   },
-  "hero": {
-    "badge": "Transformación Digital",
-    "title": "Transformamos ideas en software funcional",
-    "subtitle": "Desarrollamos soluciones tecnológicas a medida para optimizar procesos, integrar sistemas y hacer crecer tu negocio de forma eficiente.",
-    "cta_primary": "Cotizar Proyecto",
-    "cta_secondary": "Ver Servicios"
-  },
   "theme": {
     "toggle": "Cambiar tema"
+  },
+  "home_page": {
+    "hero": {
+      "badge": "Transformación Digital",
+      "title": "Transformamos ideas en software funcional",
+      "subtitle": "Desarrollamos soluciones tecnológicas a medida para optimizar procesos, integrar sistemas y hacer crecer tu negocio de forma eficiente.",
+      "cta_primary": "Cotizar Proyecto",
+      "cta_secondary": "Ver Servicios"
+    }
   },
   "contact_page": {
     "title": "Contacto",
@@ -71,6 +73,103 @@
     "success": "¡Mensaje enviado! Te contactaremos pronto.",
     "error": "Ocurrió un error. Intenta nuevamente.",
     "whatsapp_label": "Escríbenos por WhatsApp"
+  },
+  "about_page": {
+    "badge": "Sobre Nosotros",
+    "title": "Construimos tecnología que transforma negocios",
+    "intro": {
+      "paragraph_1": "Impulsamos la transformación digital de las empresas con soluciones tecnológicas a medida. Automatizamos procesos, integramos sistemas y centralizamos información para lograr operaciones más eficientes y escalables.",
+      "paragraph_2": "Nos integramos como parte del equipo de cada cliente, acompañándolos desde la definición del alcance hasta la evolución continua de la solución."
+    },
+    "features": {
+      "automation": {
+        "title": "Automatización",
+        "description": "Eliminamos tareas repetitivas y optimizamos flujos para que tu equipo se enfoque en lo que importa."
+      },
+      "integration": {
+        "title": "Integración de sistemas",
+        "description": "Conectamos tus herramientas y plataformas para que trabajen como un solo ecosistema."
+      },
+      "team": {
+        "title": "Equipo cercano",
+        "description": "Trabajamos como una extensión de tu equipo, con comunicación directa en cada etapa del proyecto."
+      }
+    },
+    "mission": {
+      "label": "Misión",
+      "text": "Impulsar la transformación digital de empresas mediante soluciones tecnológicas a medida que optimizan procesos, integran sistemas y generan valor real."
+    },
+    "vision": {
+      "label": "Visión",
+      "text": "Ser el aliado tecnológico de referencia en Latinoamérica, reconocidos por transformar operaciones con soluciones que escalan junto al negocio."
+    },
+    "approach": {
+      "label": "Nuestro Enfoque",
+      "title": "Cómo pensamos antes de construir",
+      "items": [
+        "Ordenamos procesos antes de digitalizar",
+        "Construimos soluciones 100% a medida",
+        "Integramos sistemas y centralizamos información",
+        "Desarrollamos software escalable y mantenible",
+        "Nos integramos al equipo del cliente"
+      ]
+    },
+    "how_we_work": {
+      "label": "Cómo Trabajamos",
+      "title": "Un proceso claro de inicio a fin",
+      "steps": [
+        {
+          "title": "Levantamiento del alcance",
+          "description": "Entendemos tu negocio, procesos y objetivos para definir el alcance real del proyecto."
+        },
+        {
+          "title": "Estructuración de procesos",
+          "description": "Mapeamos y ordenamos los flujos antes de digitalizar para evitar trasladar ineficiencias al software."
+        },
+        {
+          "title": "Desarrollo modular",
+          "description": "Construimos por módulos independientes que se integran entre sí, facilitando cambios y mantenimiento."
+        },
+        {
+          "title": "Entregas iterativas",
+          "description": "Entregamos avances funcionales en ciclos cortos para que puedas validar y dar retroalimentación continua."
+        },
+        {
+          "title": "Soporte y evolución continua",
+          "description": "Acompañamos el crecimiento de la solución después del lanzamiento, adaptándola a nuevas necesidades."
+        }
+      ]
+    },
+    "values": {
+      "label": "Nuestros Valores",
+      "title": "Los principios que guían nuestro trabajo",
+      "items": [
+        {
+          "title": "Orden",
+          "description": "Estructuramos antes de construir. Un proceso ordenado es la base de una solución sólida."
+        },
+        {
+          "title": "Calidad técnica",
+          "description": "Escribimos código limpio, mantenible y probado. La calidad no es opcional."
+        },
+        {
+          "title": "Transparencia",
+          "description": "Comunicamos avances, bloqueos y decisiones con claridad y honestidad en todo momento."
+        },
+        {
+          "title": "Compromiso",
+          "description": "Nos involucramos como si el proyecto fuera nuestro, porque el éxito del cliente es el nuestro."
+        },
+        {
+          "title": "Visión a largo plazo",
+          "description": "Diseñamos soluciones que crecen con el negocio, no parches que generan deuda técnica."
+        },
+        {
+          "title": "Innovación",
+          "description": "Adoptamos nuevas tecnologías y enfoques cuando aportan valor real al proyecto."
+        }
+      ]
+    }
   },
   "footer": {
     "tagline": "Transformamos ideas en software funcional.",

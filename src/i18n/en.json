@@ -10,15 +10,17 @@
     "contact": "Contact",
     "cta": "Get a Quote"
   },
-  "hero": {
-    "badge": "Digital Transformation",
-    "title": "We turn ideas into functional software",
-    "subtitle": "We develop custom technological solutions to optimize processes, integrate systems, and grow your business efficiently.",
-    "cta_primary": "Get a Quote",
-    "cta_secondary": "Our Services"
-  },
   "theme": {
     "toggle": "Toggle theme"
+  },
+  "home_page": {
+    "hero": {
+      "badge": "Digital Transformation",
+      "title": "We turn ideas into functional software",
+      "subtitle": "We develop custom technological solutions to optimize processes, integrate systems, and grow your business efficiently.",
+      "cta_primary": "Get a Quote",
+      "cta_secondary": "Our Services"
+    }
   },
   "contact_page": {
     "title": "Contact",
@@ -71,6 +73,103 @@
     "success": "Message sent! We'll get back to you soon.",
     "error": "Something went wrong. Please try again.",
     "whatsapp_label": "Chat on WhatsApp"
+  },
+  "about_page": {
+    "badge": "About Us",
+    "title": "We build technology that transforms businesses",
+    "intro": {
+      "paragraph_1": "We drive the digital transformation of companies with custom-built technological solutions. We automate processes, integrate systems, and centralize information to achieve more efficient and scalable operations.",
+      "paragraph_2": "We become part of each client's team, accompanying them from scope definition to the continuous evolution of the solution."
+    },
+    "features": {
+      "automation": {
+        "title": "Automation",
+        "description": "We eliminate repetitive tasks and optimize workflows so your team can focus on what matters."
+      },
+      "integration": {
+        "title": "Systems integration",
+        "description": "We connect your tools and platforms so they work as a single ecosystem."
+      },
+      "team": {
+        "title": "Close-knit team",
+        "description": "We work as an extension of your team, with direct communication at every stage of the project."
+      }
+    },
+    "mission": {
+      "label": "Mission",
+      "text": "To drive the digital transformation of companies through custom technological solutions that optimize processes, integrate systems, and generate real value."
+    },
+    "vision": {
+      "label": "Vision",
+      "text": "To be the go-to technology partner in Latin America, recognized for transforming operations with solutions that scale alongside the business."
+    },
+    "approach": {
+      "label": "Our Approach",
+      "title": "How we think before we build",
+      "items": [
+        "We organize processes before digitizing",
+        "We build 100% custom solutions",
+        "We integrate systems and centralize information",
+        "We develop scalable and maintainable software",
+        "We become part of the client's team"
+      ]
+    },
+    "how_we_work": {
+      "label": "How We Work",
+      "title": "A clear process from start to finish",
+      "steps": [
+        {
+          "title": "Scope discovery",
+          "description": "We understand your business, processes, and goals to define the real scope of the project."
+        },
+        {
+          "title": "Process structuring",
+          "description": "We map and organize workflows before digitizing to avoid transferring inefficiencies into the software."
+        },
+        {
+          "title": "Modular development",
+          "description": "We build with independent modules that integrate with each other, making changes and maintenance easier."
+        },
+        {
+          "title": "Iterative deliveries",
+          "description": "We deliver functional progress in short cycles so you can validate and provide continuous feedback."
+        },
+        {
+          "title": "Support and continuous evolution",
+          "description": "We accompany the growth of the solution after launch, adapting it to new needs."
+        }
+      ]
+    },
+    "values": {
+      "label": "Our Values",
+      "title": "The principles that guide our work",
+      "items": [
+        {
+          "title": "Order",
+          "description": "We structure before we build. An organized process is the foundation of a solid solution."
+        },
+        {
+          "title": "Technical quality",
+          "description": "We write clean, maintainable, and tested code. Quality is non-negotiable."
+        },
+        {
+          "title": "Transparency",
+          "description": "We communicate progress, blockers, and decisions with clarity and honesty at all times."
+        },
+        {
+          "title": "Commitment",
+          "description": "We get involved as if the project were our own, because the client's success is ours."
+        },
+        {
+          "title": "Long-term vision",
+          "description": "We design solutions that grow with the business, not patches that generate technical debt."
+        },
+        {
+          "title": "Innovation",
+          "description": "We adopt new technologies and approaches when they bring real value to the project."
+        }
+      ]
+    }
   },
   "footer": {
     "tagline": "We turn ideas into functional software.",

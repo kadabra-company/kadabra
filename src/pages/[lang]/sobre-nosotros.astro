@@ -1,0 +1,291 @@
+---
+import MainLayout from "../../layouts/main-layout.astro";
+import { Zap, GitMerge, Users, Target, Eye } from "lucide-astro";
+import { getLangFromUrl, getTranslations } from "../../lib/i18n";
+
+/**
+ * Requerido en toda página dentro de [lang]/ con rutas dinámicas.
+ * Astro la ejecuta automáticamente en build para saber qué versiones
+ * de esta página generar, una por cada idioma soportado.
+ * @returns Lista de parámetros de ruta estática
+ */
+export function getStaticPaths() {
+    return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const { url } = Astro;
+const lang = getLangFromUrl(url);
+const t = getTranslations(lang);
+const a = t.about_page;
+---
+
+<MainLayout>
+    <main class="bg-background">
+        <!-- Hero / Intro: bg-background -->
+        <section class="relative overflow-hidden bg-background">
+            <!-- Gradiente decorativo -->
+            <div class="absolute inset-0 -z-10">
+                <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 w-200 h-125 bg-k-green/10 rounded-full blur-3xl"
+                >
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-6 pt-32 pb-20">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- Columna izquierda: texto -->
+                    <div class="flex flex-col gap-6">
+                        <h1
+                            class="text-4xl md:text-5xl font-bold tracking-tight text-foreground leading-tight"
+                        >
+                            {a.title}
+                        </h1>
+                        <div
+                            class="flex flex-col gap-4 text-lg text-muted-foreground"
+                        >
+                            <p>{a.intro.paragraph_1}</p>
+                            <p>{a.intro.paragraph_2}</p>
+                        </div>
+                    </div>
+
+                    <!-- Columna derecha: feature cards -->
+                    <div class="flex flex-col gap-4">
+                        <!-- Automatización -->
+                        <div
+                            class="flex items-start gap-4 p-5 rounded-2xl border border-border bg-card hover:border-k-green/40 transition-colors"
+                        >
+                            <div
+                                class="p-2.5 rounded-xl bg-k-green/10 text-k-green shrink-0"
+                            >
+                                <Zap class="h-5 w-5" />
+                            </div>
+                            <div>
+                                <p class="font-semibold text-foreground">
+                                    {a.features.automation.title}
+                                </p>
+                                <p class="text-sm text-muted-foreground mt-1">
+                                    {a.features.automation.description}
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Integración -->
+                        <div
+                            class="flex items-start gap-4 p-5 rounded-2xl border border-border bg-card hover:border-k-green/40 transition-colors"
+                        >
+                            <div
+                                class="p-2.5 rounded-xl bg-k-green/10 text-k-green shrink-0"
+                            >
+                                <GitMerge class="h-5 w-5" />
+                            </div>
+                            <div>
+                                <p class="font-semibold text-foreground">
+                                    {a.features.integration.title}
+                                </p>
+                                <p class="text-sm text-muted-foreground mt-1">
+                                    {a.features.integration.description}
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Equipo -->
+                        <div
+                            class="flex items-start gap-4 p-5 rounded-2xl border border-border bg-card hover:border-k-green/40 transition-colors"
+                        >
+                            <div
+                                class="p-2.5 rounded-xl bg-k-green/10 text-k-green shrink-0"
+                            >
+                                <Users class="h-5 w-5" />
+                            </div>
+                            <div>
+                                <p class="font-semibold text-foreground">
+                                    {a.features.team.title}
+                                </p>
+                                <p class="text-sm text-muted-foreground mt-1">
+                                    {a.features.team.description}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Misión y Visión: bg-card -->
+        <section class="py-20 border-t border-border bg-card">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Misión -->
+                    <div
+                        class="flex flex-col gap-5 p-8 rounded-2xl border border-border bg-background"
+                    >
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="p-2.5 rounded-xl bg-k-green/10 text-k-green"
+                            >
+                                <Target class="h-5 w-5" />
+                            </div>
+                            <span
+                                class="text-sm font-bold tracking-widest uppercase text-k-green"
+                            >
+                                {a.mission.label}
+                            </span>
+                        </div>
+                        <div class="relative pl-5">
+                            <span
+                                class="absolute left-0 top-0 text-4xl font-black text-k-green leading-none select-none"
+                            >
+                                &ldquo;
+                            </span>
+                            <p
+                                class="italic text-foreground text-lg leading-relaxed pt-5"
+                            >
+                                {a.mission.text}
+                            </p>
+                            <span
+                                class="text-4xl font-black text-k-green leading-none select-none float-right"
+                            >
+                                &rdquo;
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Visión -->
+                    <div
+                        class="flex flex-col gap-5 p-8 rounded-2xl border border-border bg-background"
+                    >
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="p-2.5 rounded-xl bg-k-green/10 text-k-green"
+                            >
+                                <Eye class="h-5 w-5" />
+                            </div>
+                            <span
+                                class="text-sm font-bold tracking-widest uppercase text-k-green"
+                            >
+                                {a.vision.label}
+                            </span>
+                        </div>
+                        <div class="relative pl-5">
+                            <span
+                                class="absolute left-0 top-0 text-4xl font-black text-k-green leading-none select-none"
+                            >
+                                &ldquo;
+                            </span>
+                            <p
+                                class="italic text-foreground text-lg leading-relaxed pt-5"
+                            >
+                                {a.vision.text}
+                            </p>
+                            <span
+                                class="text-4xl font-black text-k-green leading-none select-none float-right"
+                            >
+                                &rdquo;
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nuestro Enfoque: bg-background -->
+        <section class="py-20 border-t border-border bg-background">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+
+                    <!-- Columna izquierda: label + título -->
+                    <div class="flex flex-col gap-4">
+                        <span class="text-sm font-bold tracking-widest uppercase text-k-green">
+                            {a.approach.label}
+                        </span>
+                        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground leading-tight">
+                            {a.approach.title}
+                        </h2>
+                    </div>
+
+                    <!-- Columna derecha: lista numerada -->
+                    <ol class="flex flex-col gap-5">
+                        {a.approach.items.map((item, i) => (
+                            <li class="flex items-center gap-5">
+                                <span class="text-4xl font-black text-k-green/30 font-mono leading-none w-12 shrink-0 select-none">
+                                    {String(i + 1).padStart(2, "0")}
+                                </span>
+                                <span class="text-foreground font-medium text-lg">
+                                    {item}
+                                </span>
+                            </li>
+                        ))}
+                    </ol>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Cómo Trabajamos: bg-card -->
+        <section class="py-20 border-t border-border bg-card">
+            <div class="max-w-7xl mx-auto px-6">
+
+                <!-- Encabezado -->
+                <div class="flex flex-col gap-2 mb-12">
+                    <span class="text-sm font-bold tracking-widest uppercase text-k-green">
+                        {a.how_we_work.label}
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+                        {a.how_we_work.title}
+                    </h2>
+                </div>
+
+                <!-- Pasos -->
+                <div class="flex flex-col gap-0">
+                    {a.how_we_work.steps.map((step, i) => (
+                        <div class="flex gap-6 group">
+                            <!-- Indicador vertical -->
+                            <div class="flex flex-col items-center">
+                                <div class="w-10 h-10 rounded-full border-2 border-k-green bg-background flex items-center justify-center shrink-0">
+                                    <span class="text-xs font-black text-k-green font-mono">{i + 1}</span>
+                                </div>
+                                {i < a.how_we_work.steps.length - 1 && (
+                                    <div class="w-0.5 flex-1 bg-border my-1"></div>
+                                )}
+                            </div>
+                            <!-- Contenido -->
+                            <div class="pb-10">
+                                <p class="font-bold text-foreground text-lg">{step.title}</p>
+                                <p class="text-muted-foreground mt-1">{step.description}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Valores: bg-background -->
+        <section class="py-20 border-t border-border bg-background">
+            <div class="max-w-7xl mx-auto px-6">
+
+                <!-- Encabezado -->
+                <div class="flex flex-col gap-2 mb-12">
+                    <span class="text-sm font-bold tracking-widest uppercase text-k-green">
+                        {a.values.label}
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+                        {a.values.title}
+                    </h2>
+                </div>
+
+                <!-- Grid de valores -->
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {a.values.items.map((value) => (
+                        <div class="flex flex-col gap-3 p-6 rounded-2xl border border-border bg-card hover:border-k-green/40 transition-colors">
+                            <div class="w-2 h-2 rounded-full bg-k-green"></div>
+                            <p class="font-bold text-foreground text-lg">{value.title}</p>
+                            <p class="text-sm text-muted-foreground leading-relaxed">{value.description}</p>
+                        </div>
+                    ))}
+                </div>
+
+            </div>
+        </section>
+    </main>
+</MainLayout>

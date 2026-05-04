@@ -1,7 +1,7 @@
 <div align="center">
-  <img src="public/logo/kadabra-isotipo.svg" alt="Kadabra Logo" width="80" />
+  <img src="public/logo/main-logo.png" alt="Kadabra Logo" width="80" />
 
-  # WebPage
+  # Página Web
 
   **Sitio web corporativo de Kadabra**
 
@@ -61,7 +61,8 @@ kadabra/
 │   │   ├── index.astro              # Redirect raíz → idioma del navegador
 │   │   └── [lang]/
 │   │       ├── index.astro          # Homepage (genera /es y /en)
-│   │       └── contacto.astro       # Página de contacto con formulario Web3Forms
+│   │       ├── contacto.astro       # Página de contacto con formulario Web3Forms
+│   │       └── sobre-nosotros.astro # Página Sobre Nosotros (intro, misión, visión, enfoque, proceso, valores)
 │   │
 │   └── styles/
 │       └── global.css               # Tailwind v4, @theme, variables CSS, animaciones
