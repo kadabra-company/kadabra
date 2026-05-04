@@ -36,6 +36,17 @@ body {
   --animate-nav-active: nav-active 2s ease-in-out infinite;
 }
 
+/* Semantic colors (Light) — Supabase palette */
+:root:not(.dark) {
+  --color-background: #F8F8F8;
+  --color-foreground: #171717;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #171717;
+  --color-muted: #F0F0F0;
+  --color-muted-foreground: #737373;
+  --color-border: #E5E5E5;
+}
+
 @keyframes nav-expand {
   from { width: 0%; left: 50%; }
   to   { width: 100%; left: 0%; }
@@ -56,13 +67,41 @@ body {
   animation: nav-expand 1.2s ease-in-out infinite alternate;
 }
 
-/* Semantic colors (Light) — Supabase palette */
-:root:not(.dark) {
-  --color-background: #F8F8F8;
-  --color-foreground: #171717;
-  --color-card: #FFFFFF;
-  --color-card-foreground: #171717;
-  --color-muted: #F0F0F0;
-  --color-muted-foreground: #737373;
-  --color-border: #E5E5E5;
+/* WhatsApp FAB */
+@keyframes fab-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, #25D366 40%, transparent); }
+  50%       { box-shadow: 0 0 0 10px color-mix(in srgb, #25D366 0%, transparent); }
+}
+
+.whatsapp-fab {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #25D366;
+  color: #fff;
+  padding: 0.875rem;
+  border-radius: 9999px;
+  animation: fab-pulse 2s ease-in-out infinite;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.whatsapp-fab:hover {
+  background-color: #1da851;
+  transform: scale(1.08);
+}
+
+.whatsapp-fab-tooltip {
+  display: none;
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+  padding-right: 0.25rem;
+}
+
+.whatsapp-fab:hover .whatsapp-fab-tooltip {
+  display: block;
 }

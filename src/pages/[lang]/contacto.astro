@@ -1,0 +1,249 @@
+---
+import MainLayout from "../../layouts/main-layout.astro";
+import FormInput from "../../components/ui/form-input.astro";
+import FormSelect from "../../components/ui/form-select.astro";
+import FormTextarea from "../../components/ui/form-textarea.astro";
+import { getLangFromUrl, getTranslations } from "../../lib/i18n";
+
+/**
+ * Requerido en toda página dentro de [lang]/ con rutas dinámicas.
+ * Astro la ejecuta automáticamente en build para saber qué versiones
+ * de esta página generar, una por cada idioma soportado.
+ * @returns Lista de parámetros de ruta estática
+ */
+export function getStaticPaths() {
+    return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const { url } = Astro;
+const lang = getLangFromUrl(url);
+const t = getTranslations(lang);
+const c = t.contact_page;
+const whatsapp = t.footer.social.whatsapp.replace(/[^0-9]/g, "");
+---
+
+<MainLayout>
+    <main class="bg-background">
+        <section class="max-w-2xl mx-auto px-6 pt-24 pb-20">
+            <!-- Encabezado -->
+            <div class="mb-10 text-center">
+                <h1
+                    class="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-3"
+                >
+                    {c.title}
+                </h1>
+                <p class="text-muted-foreground text-lg">{c.subtitle}</p>
+            </div>
+
+            <!-- Formulario -->
+            <form id="contact-form" class="flex flex-col gap-5">
+                <!-- Web3Forms access key -->
+                <input
+                    type="hidden"
+                    name="access_key"
+                    value="78d46f44-377b-40a2-9fd6-33ecb30a1322"
+                />
+                <input
+                    type="hidden"
+                    name="subject"
+                    value="Nuevo contacto desde Kadabra WebPage"
+                />
+                <!-- Honeypot anti-spam -->
+                <input type="checkbox" name="botcheck" style="display:none" />
+
+                <!-- Tipo de documento + Número -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <FormSelect
+                        id="doc_type"
+                        name="doc_type"
+                        label={c.doc_type.label}
+                        required
+                        class="sm:w-44"
+                    >
+                        <option value="dni">{c.doc_type.options.dni}</option>
+                        <option value="ruc">{c.doc_type.options.ruc}</option>
+                        <option value="passport"
+                            >{c.doc_type.options.passport}</option
+                        >
+                        <option value="other">{c.doc_type.options.other}</option
+                        >
+                    </FormSelect>
+                    <FormInput
+                        id="doc_number"
+                        name="doc_number"
+                        label={c.doc_number.label}
+                        placeholder={c.doc_number.placeholder}
+                        required
+                        class="flex-1"
+                    />
+                </div>
+
+                <!-- Nombre -->
+                <FormInput
+                    id="name"
+                    name="name"
+                    label={c.name.label}
+                    placeholder={c.name.placeholder}
+                    autocomplete="name"
+                    required
+                />
+
+                <!-- Correo + Teléfono -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <FormInput
+                        id="email"
+                        name="email"
+                        type="email"
+                        label={c.email.label}
+                        placeholder={c.email.placeholder}
+                        autocomplete="email"
+                        required
+                        class="flex-1"
+                    />
+                    <FormInput
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        label={c.phone.label}
+                        placeholder={c.phone.placeholder}
+                        autocomplete="tel"
+                        required
+                        class="flex-1"
+                    />
+                </div>
+
+                <!-- Tipo de servicio -->
+                <FormSelect
+                    id="service_type"
+                    name="service_type"
+                    label={c.service_type.label}
+                    required
+                >
+                    <option value="development"
+                        >{c.service_type.options.development}</option
+                    >
+                    <option value="integrations"
+                        >{c.service_type.options.integrations}</option
+                    >
+                    <option value="maintenance"
+                        >{c.service_type.options.maintenance}</option
+                    >
+                    <option value="advisory"
+                        >{c.service_type.options.advisory}</option
+                    >
+                    <option value="consulting"
+                        >{c.service_type.options.consulting}</option
+                    >
+                </FormSelect>
+
+                <!-- Asunto -->
+                <FormInput
+                    id="subject"
+                    name="subject"
+                    label={c.subject.label}
+                    placeholder={c.subject.placeholder}
+                    required
+                />
+
+                <!-- Mensaje -->
+                <FormTextarea
+                    id="message"
+                    name="message"
+                    label={c.message.label}
+                    placeholder={c.message.placeholder}
+                    rows={5}
+                    required
+                />
+
+                <!-- Submit -->
+                <button
+                    id="submit-btn"
+                    type="submit"
+                    class="w-full bg-k-green hover:bg-k-green-dark text-primary-foreground py-3.5 rounded-xl font-bold text-sm tracking-wide transition-all active:scale-[0.98] border-2 border-k-green-light disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                    {c.submit}
+                </button>
+
+                <!-- Feedback -->
+                <p
+                    id="form-success"
+                    class="hidden text-center text-sm font-semibold text-k-green"
+                >
+                    {c.success}
+                </p>
+                <p
+                    id="form-error"
+                    class="hidden text-center text-sm font-semibold text-red-500"
+                >
+                    {c.error}
+                </p>
+            </form>
+        </section>
+    </main>
+
+    <!-- Botón flotante WhatsApp -->
+    <a
+        href={`https://wa.me/${whatsapp}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={c.whatsapp_label}
+        class="whatsapp-fab"
+    >
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+            <path
+                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+            ></path>
+        </svg>
+        <span class="whatsapp-fab-tooltip">{c.whatsapp_label}</span>
+    </a>
+
+    <script>
+        const form = document.getElementById("contact-form") as HTMLFormElement;
+        const btn = document.getElementById("submit-btn") as HTMLButtonElement;
+        const success = document.getElementById("form-success")!;
+        const error = document.getElementById("form-error")!;
+
+        form?.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            btn.disabled = true;
+            const originalText = btn.textContent;
+            btn.textContent = btn.dataset.submitting ?? "Enviando...";
+            success.classList.add("hidden");
+            error.classList.add("hidden");
+
+            try {
+                const res = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                    },
+                    body: JSON.stringify(
+                        Object.fromEntries(new FormData(form)),
+                    ),
+                });
+                const json = await res.json();
+                if (json.success) {
+                    success.classList.remove("hidden");
+                    form.reset();
+                } else {
+                    error.classList.remove("hidden");
+                }
+            } catch {
+                error.classList.remove("hidden");
+            } finally {
+                btn.disabled = false;
+                btn.textContent = originalText;
+            }
+        });
+    </script>
+</MainLayout>

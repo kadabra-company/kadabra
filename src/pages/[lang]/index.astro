@@ -2,8 +2,13 @@
 import MainLayout from "../../layouts/main-layout.astro";
 import Hero from "../../components/hero.astro";
 import { getLangFromUrl } from "../../lib/i18n";
-import type { Locale } from "../../lib/i18n";
 
+/**
+ * Requerido en toda página dentro de [lang]/ con rutas dinámicas.
+ * Astro la ejecuta automáticamente en build para saber qué versiones
+ * de esta página generar, una por cada idioma soportado.
+ * @returns Lista de parámetros de ruta estática
+ */
 export function getStaticPaths() {
     return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
 }
@@ -12,6 +17,7 @@ const { url } = Astro;
 const lang = getLangFromUrl(url);
 ---
 
+<!-- HOME PAGE -->
 <MainLayout>
     <main class="bg-background">
         <Hero />

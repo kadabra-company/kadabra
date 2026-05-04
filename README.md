@@ -32,20 +32,25 @@ Características principales:
 kadabra/
 ├── public/
 │   ├── favicon.ico
-│   ├── favicon.svg
 │   └── logo/
-│       └── kadabra-isotipo.svg      # Logo SVG de la marca
+│       └── main-logo.png            # Logo PNG de la marca
 │
 ├── src/
 │   ├── components/
-│   │   └── navbar.astro             # Navbar sticky con logo, links, tema e idioma
+│   │   ├── navbar.astro             # Navbar sticky con logo, links, tema e idioma
+│   │   ├── hero.astro               # Sección hero de la homepage
+│   │   ├── footer.astro             # Footer con redes sociales y contacto
+│   │   └── ui/
+│   │       ├── form-input.astro     # Input reutilizable con label y validación
+│   │       ├── form-select.astro    # Select reutilizable con label y validación
+│   │       └── form-textarea.astro  # Textarea reutilizable con label y validación
 │   │
 │   ├── i18n/
 │   │   ├── es.json                  # Textos en español
 │   │   └── en.json                  # Textos en inglés
 │   │
 │   ├── layouts/
-│   │   └── main-layout.astro        # Shell HTML, head, script de tema, navbar
+│   │   └── main-layout.astro        # Shell HTML, head, script de tema, navbar, footer
 │   │
 │   ├── lib/
 │   │   └── i18n.ts                  # getLangFromUrl() y getTranslations()
@@ -53,7 +58,8 @@ kadabra/
 │   ├── pages/
 │   │   ├── index.astro              # Redirect raíz → idioma del navegador
 │   │   └── [lang]/
-│   │       └── index.astro          # Homepage (genera /es y /en)
+│   │       ├── index.astro          # Homepage (genera /es y /en)
+│   │       └── contacto.astro       # Página de contacto con formulario Web3Forms
 │   │
 │   └── styles/
 │       └── global.css               # Tailwind v4, @theme, variables CSS, animaciones
@@ -85,20 +91,35 @@ La ruta raíz `/` no renderiza contenido — solo ejecuta un script `is:inline` 
 ### Resolución de ruta e idioma
 
 ```
-URL: /es  o  /en
-         │
-         ▼
-[lang]/index.astro
-         │
-         ▼
-getLangFromUrl(url)  ──►  extrae "es" o "en" del pathname
-         │
-         ▼
-getTranslations(lang)  ──►  importa es.json o en.json (import estático, HMR activo)
-         │
-         ▼
-Renderiza página con textos del idioma correspondiente
+URL: /es  o  /en  o  /es/contacto  o  /en/contacto
+               │
+               ▼
+    [lang]/index.astro  |  [lang]/contacto.astro
+               │
+               ▼
+    getLangFromUrl(url)  ──►  extrae "es" o "en" del pathname
+               │
+               ▼
+    getTranslations(lang)  ──►  importa es.json o en.json (import estático, HMR activo)
+               │
+               ▼
+    Renderiza página con textos del idioma correspondiente
 ```
+
+### Envío del formulario de contacto
+
+```
+Usuario completa el formulario y hace submit
+       │
+       ▼
+fetch POST → https://api.web3forms.com/submit
+       │
+       ├─ json.success === true ──► muestra mensaje de éxito + resetea el formulario
+       │
+       └─ error de red o API  ──► muestra mensaje de error
+```
+
+El formulario incluye un honeypot anti-spam (`botcheck`) y un `access_key` que identifica la cuenta de Web3Forms.
 
 ### Tema oscuro / claro
 
@@ -131,7 +152,7 @@ Click en ES o EN (navbar)
 href calculado server-side en navbar.astro:
   currentPath.replace(`/${lang}`, "/es" | "/en")
 
-Ejemplo: /en/servicios  ──►  /es/servicios
+Ejemplo: /en/contacto  ──►  /es/contacto
          │
          ▼
 Astro genera la nueva ruta estática con el JSON del idioma elegido

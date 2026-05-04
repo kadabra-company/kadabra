@@ -1,0 +1,28 @@
+---
+interface Props {
+    id: string;
+    name: string;
+    label: string;
+    required?: boolean;
+    class?: string;
+}
+
+const { id, name, label, required = false, class: className } = Astro.props;
+---
+
+<div class={`flex flex-col gap-1.5 ${className ?? ""}`}>
+    <label
+        for={id}
+        class="text-[0.8125rem] font-semibold text-foreground tracking-[0.01em]"
+    >
+        {label}{required && <span class="text-red-500 ml-0.5">*</span>}
+    </label>
+    <select
+        id={id}
+        name={name}
+        required={required}
+        class="bg-card border border-border rounded-xl px-3.5 py-2.5 text-sm text-foreground w-full outline-none focus:border-k-green focus:ring-2 focus:ring-k-green/20 transition-colors"
+    >
+        <slot />
+    </select>
+</div>

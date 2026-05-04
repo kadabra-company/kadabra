@@ -19,5 +19,69 @@
   },
   "theme": {
     "toggle": "Cambiar tema"
+  },
+  "contact_page": {
+    "title": "Contacto",
+    "subtitle": "Cuéntanos sobre tu proyecto y nos pondremos en contacto contigo.",
+    "doc_type": {
+      "label": "Tipo de documento",
+      "options": {
+        "dni": "DNI",
+        "ruc": "RUC",
+        "passport": "Pasaporte",
+        "other": "Otro"
+      }
+    },
+    "doc_number": {
+      "label": "Número de documento",
+      "placeholder": "Ej. 12345678"
+    },
+    "name": {
+      "label": "Nombre completo",
+      "placeholder": "Tu nombre"
+    },
+    "email": {
+      "label": "Correo electrónico",
+      "placeholder": "tu@correo.com"
+    },
+    "phone": {
+      "label": "Teléfono",
+      "placeholder": "+51 000 000 000"
+    },
+    "service_type": {
+      "label": "Tipo de servicio",
+      "options": {
+        "development": "Desarrollo",
+        "integrations": "Integraciones",
+        "maintenance": "Mantenimiento",
+        "advisory": "Asesoría",
+        "consulting": "Consulta"
+      }
+    },
+    "subject": {
+      "label": "Asunto",
+      "placeholder": "¿En qué podemos ayudarte?"
+    },
+    "message": {
+      "label": "Mensaje",
+      "placeholder": "Describe tu proyecto, necesidades o consulta con el mayor detalle posible..."
+    },
+    "submit": "Enviar mensaje",
+    "submitting": "Enviando...",
+    "success": "¡Mensaje enviado! Te contactaremos pronto.",
+    "error": "Ocurrió un error. Intenta nuevamente.",
+    "whatsapp_label": "Escríbenos por WhatsApp"
+  },
+  "footer": {
+    "tagline": "Transformamos ideas en software funcional.",
+    "social_label": "Redes Sociales",
+    "contact_link": "Contacto",
+    "copyright": "Todos los derechos reservados.",
+    "social": {
+      "linkedin": "https://www.linkedin.com/company/kadabra-company",
+      "github": "https://github.com/kadabra-company",
+      "email": "c.apaza@icloud.com",
+      "whatsapp": "+51974508218"
+    }
   }
 }

@@ -1,0 +1,36 @@
+---
+interface Props {
+    id: string;
+    name: string;
+    label: string;
+    placeholder?: string;
+    rows?: number;
+    required?: boolean;
+}
+
+const {
+    id,
+    name,
+    label,
+    placeholder,
+    rows = 5,
+    required = false,
+} = Astro.props;
+---
+
+<div class="flex flex-col gap-1.5">
+    <label
+        for={id}
+        class="text-[0.8125rem] font-semibold text-foreground tracking-[0.01em]"
+    >
+        {label}{required && <span class="text-red-500 ml-0.5">*</span>}
+    </label>
+    <textarea
+        id={id}
+        name={name}
+        rows={rows}
+        placeholder={placeholder}
+        required={required}
+        class="bg-card border border-border rounded-xl px-3.5 py-2.5 text-sm text-foreground w-full outline-none focus:border-k-green focus:ring-2 focus:ring-k-green/20 transition-colors placeholder:text-muted-foreground resize-none"
+    ></textarea>
+</div>

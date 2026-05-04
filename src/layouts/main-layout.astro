@@ -1,6 +1,7 @@
 ---
 import { getLangFromUrl, getTranslations } from "../lib/i18n";
 import Navbar from "../components/navbar.astro";
+import Footer from "../components/footer.astro";
 import "@fontsource-variable/inter/wght.css";
 import "../styles/global.css";
 
@@ -21,9 +22,12 @@ const t = getTranslations(lang);
             document.documentElement.classList.add(savedTheme);
         </script>
     </head>
-    <body class="bg-background text-foreground min-h-screen">
+    <body class="bg-background text-foreground min-h-screen flex flex-col">
         <!-- Navbar Section -->
         <Navbar />
+        <!-- Main Content -->
         <slot />
+        <!-- Footer Section -->
+        <Footer />
     </body>
 </html>
