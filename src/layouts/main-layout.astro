@@ -15,7 +15,7 @@ const t = getTranslations(lang);
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{t.meta?.title || "Kadabra"}</title>
         <meta name="description" content={t.meta?.description || ""} />
-        <link rel="icon" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
         <script is:inline>
             const savedTheme = localStorage.getItem("theme") || "dark";
             document.documentElement.classList.add(savedTheme);
