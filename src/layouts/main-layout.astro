@@ -1,0 +1,29 @@
+---
+import { getLangFromUrl, getTranslations } from "../lib/i18n";
+import Navbar from "../components/navbar.astro";
+import "@fontsource-variable/inter/wght.css";
+import "../styles/global.css";
+
+const { url } = Astro;
+const lang = getLangFromUrl(url);
+const t = getTranslations(lang);
+---
+
+<html lang={lang}>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{t.meta?.title || "Kadabra"}</title>
+        <meta name="description" content={t.meta?.description || ""} />
+        <link rel="icon" href="/favicon.svg" />
+        <script is:inline>
+            const savedTheme = localStorage.getItem("theme") || "dark";
+            document.documentElement.classList.add(savedTheme);
+        </script>
+    </head>
+    <body class="bg-background text-foreground min-h-screen">
+        <!-- Navbar Section -->
+        <Navbar />
+        <slot />
+    </body>
+</html>

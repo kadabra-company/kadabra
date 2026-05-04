@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+/* Decirle a Tailwind que dark: = clase .dark en el <html> */
+@variant dark (&:where(.dark, .dark *));
+
+/* Fuente base */
+body {
+  font-family: 'Inter Variable', 'Inter', sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+@theme {
+  --color-k-green: #006239;
+  --color-k-green-dark: #004D2C;
+  --color-k-green-light: #00A878;
+  --color-k-slate: #6B7A9E;
+  --color-k-slate-dark: #4E5A7A;
+  --color-k-slate-light: #9BA8C4;
+  --color-k-dark: #1C1C1C;
+  --color-k-dark-dark: #0D0D0D;
+  --color-k-dark-light: #3D3D3D;
+  --color-k-gray: #9B9B9B;
+
+  /* Semantic colors (Dark) — Supabase palette */
+  --color-background: #121212;
+  --color-foreground: #EDEDED;
+  --color-card: #1C1C1C;
+  --color-card-foreground: #EDEDED;
+  --color-primary: #006239;
+  --color-primary-foreground: #FFFFFF;
+  --color-muted: #242424;
+  --color-muted-foreground: #9B9B9B;
+  --color-border: #2E2E2E;
+
+  /* Animaciones */
+  --animate-nav-active: nav-active 2s ease-in-out infinite;
+}
+
+@keyframes nav-expand {
+  from { width: 0%; left: 50%; }
+  to   { width: 100%; left: 0%; }
+}
+
+.nav-active-bar {
+  position: relative;
+}
+
+.nav-active-bar::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background-color: var(--color-k-green);
+  animation: nav-expand 1.2s ease-in-out infinite alternate;
+}
+
+/* Semantic colors (Light) — Supabase palette */
+:root:not(.dark) {
+  --color-background: #F8F8F8;
+  --color-foreground: #171717;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #171717;
+  --color-muted: #F0F0F0;
+  --color-muted-foreground: #737373;
+  --color-border: #E5E5E5;
+}

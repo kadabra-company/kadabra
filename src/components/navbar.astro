@@ -1,0 +1,197 @@
+---
+import { getLangFromUrl, getTranslations } from "../lib/i18n";
+import { Menu, X, Sun, Moon } from "lucide-astro";
+
+const { url } = Astro;
+const lang = getLangFromUrl(url);
+const t = getTranslations(lang);
+
+const currentPath = url.pathname;
+const esPath = currentPath.startsWith(`/${lang}`)
+    ? currentPath.replace(`/${lang}`, "/es")
+    : "/es";
+const enPath = currentPath.startsWith(`/${lang}`)
+    ? currentPath.replace(`/${lang}`, "/en")
+    : "/en";
+---
+
+<nav class="border-b border-border bg-card sticky top-0 z-50 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
+        <!-- Logo -->
+        <a href={`/${lang}`} class="flex items-center gap-1 group">
+            <img
+                src="/logo/kadabra-isotipo.svg"
+                alt="Kadabra"
+                class="h-7 w-auto transition-transform group-hover:scale-105"
+            />
+            <span
+                class="text-xl font-bold tracking-wide text-foreground translate-y-0.5"
+            >
+                adabra
+            </span>
+        </a>
+
+        <!-- Menú Desktop -->
+        <div
+            class="hidden md:flex items-center gap-9 text-sm font-semibold tracking-wide"
+        >
+            <a
+                href={`/${lang}`}
+                class={`hover:text-k-green transition-colors ${currentPath === `/${lang}` || currentPath === `/${lang}/` ? "nav-active-bar font-black" : ""}`}
+            >
+                {t.nav.home}
+            </a>
+            <a
+                href={`/${lang}/servicios`}
+                class={`hover:text-k-green transition-colors ${currentPath === `/${lang}/servicios` ? "nav-active-bar font-black" : ""}`}
+            >
+                {t.nav.services}
+            </a>
+            <a
+                href={`/${lang}/sobre-nosotros`}
+                class={`hover:text-k-green transition-colors ${currentPath === `/${lang}/sobre-nosotros` ? "nav-active-bar font-black" : ""}`}
+            >
+                {t.nav.about}
+            </a>
+            <a
+                href={`/${lang}/contacto`}
+                class={`hover:text-k-green transition-colors ${currentPath === `/${lang}/contacto` ? "nav-active-bar font-black" : ""}`}
+            >
+                {t.nav.contact}
+            </a>
+        </div>
+
+        <!-- Acciones -->
+        <div class="flex items-center gap-4">
+            <!-- Toggle Tema -->
+            <button
+                id="theme-toggle"
+                class="p-2 rounded-xl hover:bg-muted transition-all text-foreground"
+                aria-label={t.theme.toggle}
+            >
+                <Sun class="h-4 w-4 hidden dark:block" />
+                <Moon class="h-4 w-4 block dark:hidden" />
+            </button>
+
+            <!-- Selector de idioma -->
+            <div
+                class="flex items-center gap-1 text-xs font-bold tracking-wide"
+            >
+                <a
+                    href={esPath}
+                    class={`px-1 pb-0.5 transition-colors ${lang === "es" ? "nav-active-bar font-black" : "text-muted-foreground hover:text-foreground"}`}
+                >
+                    ES
+                </a>
+                <span class="text-border select-none">|</span>
+                <a
+                    href={enPath}
+                    class={`px-1 pb-0.5 transition-colors ${lang === "en" ? "nav-active-bar font-black" : "text-muted-foreground hover:text-foreground"}`}
+                >
+                    EN
+                </a>
+            </div>
+
+            <!-- Botón CTA (solo desktop) -->
+            <a
+                href={`/${lang}/contacto`}
+                class="hidden md:inline-flex bg-k-green hover:bg-k-green-dark text-primary-foreground px-4 py-1.5 rounded-lg font-bold text-xs tracking-wide transition-all active:scale-[0.97]"
+            >
+                {t.nav.cta}
+            </a>
+
+            <!-- Menú móvil botón -->
+            <button
+                id="mobile-menu-toggle"
+                class="md:hidden p-2 rounded-xl hover:bg-muted"
+                aria-label="Abrir menú"
+                aria-expanded="false"
+            >
+                <Menu id="menu-icon-open" class="h-6 w-6" />
+                <X id="menu-icon-close" class="h-6 w-6 hidden" />
+            </button>
+        </div>
+    </div>
+
+    <!-- Panel menú móvil -->
+    <div
+        id="mobile-menu"
+        class="hidden md:hidden border-t border-border bg-card px-6 py-4 flex-col gap-1 text-foreground text-sm font-semibold tracking-wide"
+    >
+        <a
+            href={`/${lang}`}
+            class={`px-3 py-3 rounded-xl hover:bg-muted hover:text-k-green transition-colors ${currentPath === `/${lang}` || currentPath === `/${lang}/` ? "text-k-green font-black" : ""}`}
+        >
+            {t.nav.home}
+        </a>
+        <a
+            href={`/${lang}/servicios`}
+            class={`px-3 py-3 rounded-xl hover:bg-muted hover:text-k-green transition-colors ${currentPath === `/${lang}/servicios` ? "text-k-green font-black" : ""}`}
+        >
+            {t.nav.services}
+        </a>
+        <a
+            href={`/${lang}/sobre-nosotros`}
+            class={`px-3 py-3 rounded-xl hover:bg-muted hover:text-k-green transition-colors ${currentPath === `/${lang}/sobre-nosotros` ? "text-k-green font-black" : ""}`}
+        >
+            {t.nav.about}
+        </a>
+        <a
+            href={`/${lang}/contacto`}
+            class={`px-3 py-3 rounded-xl hover:bg-muted hover:text-k-green transition-colors ${currentPath === `/${lang}/contacto` ? "text-k-green font-black" : ""}`}
+        >
+            {t.nav.contact}
+        </a>
+        <!-- Botón CTA móvil -->
+        <a
+            href={`/${lang}/contacto`}
+            class="mt-2 mx-3 flex items-center justify-center bg-k-green hover:bg-k-green-dark text-primary-foreground py-3 rounded-xl font-bold text-sm tracking-wide transition-all active:scale-[0.97]"
+        >
+            {t.nav.cta}
+        </a>
+    </div>
+</nav>
+
+<script>
+    // Theme toggle
+    const themeToggle = document.getElementById("theme-toggle");
+    themeToggle?.addEventListener("click", () => {
+        const isDark = document.documentElement.classList.toggle("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById("mobile-menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const iconOpen = document.getElementById("menu-icon-open");
+    const iconClose = document.getElementById("menu-icon-close");
+
+    menuToggle?.addEventListener("click", () => {
+        const isOpen = !mobileMenu?.classList.contains("hidden");
+
+        if (isOpen) {
+            mobileMenu?.classList.remove("flex");
+            mobileMenu?.classList.add("hidden");
+            iconOpen?.classList.remove("hidden");
+            iconClose?.classList.add("hidden");
+            menuToggle.setAttribute("aria-expanded", "false");
+        } else {
+            mobileMenu?.classList.remove("hidden");
+            mobileMenu?.classList.add("flex");
+            iconOpen?.classList.add("hidden");
+            iconClose?.classList.remove("hidden");
+            menuToggle.setAttribute("aria-expanded", "true");
+        }
+    });
+
+    // Cerrar menú al hacer click en un link
+    mobileMenu?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+            mobileMenu.classList.remove("flex");
+            mobileMenu.classList.add("hidden");
+            iconOpen?.classList.remove("hidden");
+            iconClose?.classList.add("hidden");
+            menuToggle?.setAttribute("aria-expanded", "false");
+        });
+    });
+</script>

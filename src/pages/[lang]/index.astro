@@ -1,0 +1,19 @@
+---
+import MainLayout from "../../layouts/main-layout.astro";
+import Hero from "../../components/hero.astro";
+import { getLangFromUrl } from "../../lib/i18n";
+import type { Locale } from "../../lib/i18n";
+
+export function getStaticPaths() {
+    return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const { url } = Astro;
+const lang = getLangFromUrl(url);
+---
+
+<MainLayout>
+    <main class="bg-background">
+        <Hero />
+    </main>
+</MainLayout>

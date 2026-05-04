@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "title": "Kadabra - Software a Medida",
+    "description": "Transformamos ideas en software funcional y de alto rendimiento."
+  },
+  "nav": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "about": "Sobre Nosotros",
+    "contact": "Contacto",
+    "cta": "Cotizar Proyecto"
+  },
+  "hero": {
+    "badge": "Software a Medida",
+    "title": "Transformamos ideas en software funcional",
+    "subtitle": "Desarrollamos soluciones tecnológicas personalizadas que impulsan el crecimiento de tu negocio.",
+    "cta_primary": "Cotizar Proyecto",
+    "cta_secondary": "Ver Servicios"
+  },
+  "theme": {
+    "toggle": "Cambiar tema"
+  }
+}

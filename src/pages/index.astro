@@ -1,0 +1,13 @@
+---
+// Redirige al idioma preferido del navegador via JS en el cliente
+---
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <script is:inline>
+            const lang = navigator.language?.startsWith("es") ? "es" : "en";
+            window.location.replace("/" + lang);
+        </script>
+    </head>
+    <body></body>
+</html>

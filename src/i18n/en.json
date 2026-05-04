@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "title": "Kadabra - Custom Software",
+    "description": "We turn ideas into high-performance functional software."
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About Us",
+    "contact": "Contact",
+    "cta": "Get a Quote"
+  },
+  "hero": {
+    "badge": "Custom Software",
+    "title": "We turn ideas into functional software",
+    "subtitle": "We develop personalized technological solutions that drive your business growth.",
+    "cta_primary": "Get a Quote",
+    "cta_secondary": "Our Services"
+  },
+  "theme": {
+    "toggle": "Toggle theme"
+  }
+}
