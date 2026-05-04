@@ -29,7 +29,9 @@ const t = getTranslations(lang);
 
         <!-- Título -->
         <h1
-            class="text-5xl md:text-7xl font-bold tracking-tight text-foreground max-w-4xl leading-tight"
+            id="hero-title"
+            data-text={t.hero.title}
+            class="font-mono text-5xl md:text-7xl font-bold tracking-tight text-foreground max-w-4xl leading-tight"
         >
             {t.hero.title}
         </h1>
@@ -56,3 +58,31 @@ const t = getTranslations(lang);
         </div>
     </div>
 </section>
+
+<script>
+    const el = document.getElementById("hero-title") as HTMLElement | null;
+    if (el) {
+        const titleEl: HTMLElement = el; // referencia sin null para usarla en closures async
+        const text = titleEl.dataset.text ?? "";
+        const cursor = document.createElement("span");
+        cursor.className = "typewriter-cursor";
+        titleEl.textContent = "";
+        titleEl.appendChild(cursor);
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                titleEl.insertBefore(document.createTextNode(text[i]), cursor);
+                i++;
+                setTimeout(type, 90);
+            } else {
+                // Cursor desaparece suavemente al terminar
+                setTimeout(() => {
+                    cursor.style.transition = "opacity 0.5s";
+                    cursor.style.opacity = "0";
+                    setTimeout(() => cursor.remove(), 500);
+                }, 1200);
+            }
+        }
+        setTimeout(type, 300);
+    }
+</script>

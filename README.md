@@ -40,6 +40,8 @@ kadabra/
 │   │   ├── navbar.astro             # Navbar sticky con logo, links, tema e idioma
 │   │   ├── hero.astro               # Sección hero de la homepage
 │   │   ├── footer.astro             # Footer con redes sociales y contacto
+│   │   ├── icons/
+│   │   │   └── whatsapp-icon.astro  # Icono SVG de WhatsApp reutilizable
 │   │   └── ui/
 │   │       ├── form-input.astro     # Input reutilizable con label y validación
 │   │       ├── form-select.astro    # Select reutilizable con label y validación
@@ -131,7 +133,9 @@ main-layout.astro → <script is:inline> en <head>
       │
       ├─ localStorage.getItem("theme")  existe? ──► aplica ese valor
       │
-      └─ no existe ──────────────────────────────► aplica "dark" (default)
+      └─ no existe ──► prefers-color-scheme del SO/browser
+                          ├─ dark  ──► aplica "dark"
+                          └─ light ──► aplica "light"
       │
       ▼
 document.documentElement.classList.add("dark" | "light")
