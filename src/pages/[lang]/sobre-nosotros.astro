@@ -16,10 +16,11 @@ export function getStaticPaths() {
 const { url } = Astro;
 const lang = getLangFromUrl(url);
 const t = getTranslations(lang);
+const seo = t.meta.pages.about;
 const a = t.about_page;
 ---
 
-<MainLayout>
+<MainLayout title={seo.title} description={seo.description}>
     <main class="bg-background">
         <!-- Hero / Intro: bg-background -->
         <section class="relative overflow-hidden bg-background">
@@ -55,7 +56,7 @@ const a = t.about_page;
                             class="flex items-start gap-4 p-5 rounded-2xl border border-border bg-card hover:border-k-green/40 transition-colors"
                         >
                             <div
-                                class="p-2.5 rounded-xl bg-k-green/10 text-k-green shrink-0"
+                                class="p-2.5 rounded-xl bg-k-green/10 text-k-green dark:text-k-green-light shrink-0"
                             >
                                 <Zap class="h-5 w-5" />
                             </div>
@@ -74,7 +75,7 @@ const a = t.about_page;
                             class="flex items-start gap-4 p-5 rounded-2xl border border-border bg-card hover:border-k-green/40 transition-colors"
                         >
                             <div
-                                class="p-2.5 rounded-xl bg-k-green/10 text-k-green shrink-0"
+                                class="p-2.5 rounded-xl bg-k-green/10 text-k-green dark:text-k-green-light shrink-0"
                             >
                                 <GitMerge class="h-5 w-5" />
                             </div>
@@ -93,7 +94,7 @@ const a = t.about_page;
                             class="flex items-start gap-4 p-5 rounded-2xl border border-border bg-card hover:border-k-green/40 transition-colors"
                         >
                             <div
-                                class="p-2.5 rounded-xl bg-k-green/10 text-k-green shrink-0"
+                                class="p-2.5 rounded-xl bg-k-green/10 text-k-green dark:text-k-green-light shrink-0"
                             >
                                 <Users class="h-5 w-5" />
                             </div>
@@ -121,19 +122,19 @@ const a = t.about_page;
                     >
                         <div class="flex items-center gap-3">
                             <div
-                                class="p-2.5 rounded-xl bg-k-green/10 text-k-green"
+                                class="p-2.5 rounded-xl bg-k-green/10 text-k-green dark:text-k-green-light"
                             >
                                 <Target class="h-5 w-5" />
                             </div>
                             <span
-                                class="text-sm font-bold tracking-widest uppercase text-k-green"
+                                class="text-sm font-bold tracking-widest uppercase text-k-green dark:text-k-green-light"
                             >
                                 {a.mission.label}
                             </span>
                         </div>
                         <div class="relative pl-5">
                             <span
-                                class="absolute left-0 top-0 text-4xl font-black text-k-green leading-none select-none"
+                                class="absolute left-0 top-0 text-4xl font-black text-k-green dark:text-k-green-light leading-none select-none"
                             >
                                 &ldquo;
                             </span>
@@ -143,7 +144,7 @@ const a = t.about_page;
                                 {a.mission.text}
                             </p>
                             <span
-                                class="text-4xl font-black text-k-green leading-none select-none float-right"
+                                class="text-4xl font-black text-k-green dark:text-k-green-light leading-none select-none float-right"
                             >
                                 &rdquo;
                             </span>
@@ -156,19 +157,19 @@ const a = t.about_page;
                     >
                         <div class="flex items-center gap-3">
                             <div
-                                class="p-2.5 rounded-xl bg-k-green/10 text-k-green"
+                                class="p-2.5 rounded-xl bg-k-green/10 text-k-green dark:text-k-green-light"
                             >
                                 <Eye class="h-5 w-5" />
                             </div>
                             <span
-                                class="text-sm font-bold tracking-widest uppercase text-k-green"
+                                class="text-sm font-bold tracking-widest uppercase text-k-green dark:text-k-green-light"
                             >
                                 {a.vision.label}
                             </span>
                         </div>
                         <div class="relative pl-5">
                             <span
-                                class="absolute left-0 top-0 text-4xl font-black text-k-green leading-none select-none"
+                                class="absolute left-0 top-0 text-4xl font-black text-k-green dark:text-k-green-light leading-none select-none"
                             >
                                 &ldquo;
                             </span>
@@ -178,7 +179,7 @@ const a = t.about_page;
                                 {a.vision.text}
                             </p>
                             <span
-                                class="text-4xl font-black text-k-green leading-none select-none float-right"
+                                class="text-4xl font-black text-k-green dark:text-k-green-light leading-none select-none float-right"
                             >
                                 &rdquo;
                             </span>
@@ -195,7 +196,7 @@ const a = t.about_page;
 
                     <!-- Columna izquierda: label + título -->
                     <div class="flex flex-col gap-4">
-                        <span class="text-sm font-bold tracking-widest uppercase text-k-green">
+                        <span class="text-sm font-bold tracking-widest uppercase text-k-green dark:text-k-green-light">
                             {a.approach.label}
                         </span>
                         <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground leading-tight">
@@ -227,7 +228,7 @@ const a = t.about_page;
 
                 <!-- Encabezado -->
                 <div class="flex flex-col gap-2 mb-12">
-                    <span class="text-sm font-bold tracking-widest uppercase text-k-green">
+                    <span class="text-sm font-bold tracking-widest uppercase text-k-green dark:text-k-green-light">
                         {a.how_we_work.label}
                     </span>
                     <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
@@ -242,7 +243,7 @@ const a = t.about_page;
                             <!-- Indicador vertical -->
                             <div class="flex flex-col items-center">
                                 <div class="w-10 h-10 rounded-full border-2 border-k-green bg-background flex items-center justify-center shrink-0">
-                                    <span class="text-xs font-black text-k-green font-mono">{i + 1}</span>
+                                    <span class="text-xs font-black text-k-green dark:text-k-green-light font-mono">{i + 1}</span>
                                 </div>
                                 {i < a.how_we_work.steps.length - 1 && (
                                     <div class="w-0.5 flex-1 bg-border my-1"></div>
@@ -266,7 +267,7 @@ const a = t.about_page;
 
                 <!-- Encabezado -->
                 <div class="flex flex-col gap-2 mb-12">
-                    <span class="text-sm font-bold tracking-widest uppercase text-k-green">
+                    <span class="text-sm font-bold tracking-widest uppercase text-k-green dark:text-k-green-light">
                         {a.values.label}
                     </span>
                     <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground">

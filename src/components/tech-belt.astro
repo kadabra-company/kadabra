@@ -1,0 +1,79 @@
+---
+import IconCsharp from "./icons/tech/icon-csharp.astro";
+import IconDotnet from "./icons/tech/icon-dotnet.astro";
+import IconSwagger from "./icons/tech/icon-swagger.astro";
+import IconJavascript from "./icons/tech/icon-javascript.astro";
+import IconTypescript from "./icons/tech/icon-typescript.astro";
+import IconNodejs from "./icons/tech/icon-nodejs.astro";
+import IconNextjs from "./icons/tech/icon-nextjs.astro";
+import IconAstro from "./icons/tech/icon-astro.astro";
+import IconTailwind from "./icons/tech/icon-tailwind.astro";
+import IconNestjs from "./icons/tech/icon-nestjs.astro";
+import IconExpress from "./icons/tech/icon-express.astro";
+import IconPython from "./icons/tech/icon-python.astro";
+import IconDjango from "./icons/tech/icon-django.astro";
+import IconKotlin from "./icons/tech/icon-kotlin.astro";
+import IconDart from "./icons/tech/icon-dart.astro";
+import IconFlutter from "./icons/tech/icon-flutter.astro";
+import IconMysql from "./icons/tech/icon-mysql.astro";
+import IconPostgresql from "./icons/tech/icon-postgresql.astro";
+import IconSqlserver from "./icons/tech/icon-sqlserver.astro";
+import IconAws from "./icons/tech/icon-aws.astro";
+import IconAzure from "./icons/tech/icon-azure.astro";
+
+interface Props {
+    t: any;
+}
+
+const { t } = Astro.props;
+const belt = t.home_page.tech_belt;
+
+const techIcons = [
+    { label: "C#", Icon: IconCsharp },
+    { label: ".NET", Icon: IconDotnet },
+    { label: "Swagger", Icon: IconSwagger },
+    { label: "JavaScript", Icon: IconJavascript },
+    { label: "TypeScript", Icon: IconTypescript },
+    { label: "Node.js", Icon: IconNodejs },
+    { label: "Next.js", Icon: IconNextjs },
+    { label: "Astro", Icon: IconAstro },
+    { label: "Tailwind", Icon: IconTailwind },
+    { label: "NestJS", Icon: IconNestjs },
+    { label: "Express.js", Icon: IconExpress },
+    { label: "Python", Icon: IconPython },
+    { label: "Django", Icon: IconDjango },
+    { label: "Kotlin", Icon: IconKotlin },
+    { label: "Dart", Icon: IconDart },
+    { label: "Flutter", Icon: IconFlutter },
+    { label: "MySQL", Icon: IconMysql },
+    { label: "PostgreSQL", Icon: IconPostgresql },
+    { label: "SQL Server", Icon: IconSqlserver },
+    { label: "AWS", Icon: IconAws },
+    { label: "Azure", Icon: IconAzure },
+];
+---
+
+<div class="border-y border-border bg-card overflow-hidden py-6">
+    <p
+        class="text-center text-xs font-semibold text-muted-foreground mb-5 tracking-widest uppercase"
+    >
+        {belt.label}
+    </p>
+    <div class="overflow-hidden">
+        <div class="marquee-track flex items-center gap-10 w-max px-10">
+            {
+                [...techIcons, ...techIcons].map(({ label, Icon }) => (
+                    <div
+                        class="flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity"
+                        title={label}
+                    >
+                        <Icon class="h-7 w-7 text-foreground" />
+                        <span class="text-[10px] font-medium text-muted-foreground whitespace-nowrap">
+                            {label}
+                        </span>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</div>

@@ -5,17 +5,26 @@ import Footer from "../components/footer.astro";
 import "@fontsource-variable/inter/wght.css";
 import "../styles/global.css";
 
+interface Props {
+    title?: string;
+    description?: string;
+}
+
+const { title, description } = Astro.props;
 const { url } = Astro;
 const lang = getLangFromUrl(url);
 const t = getTranslations(lang);
+
+const pageTitle = title ?? t.meta?.title ?? "Kadabra";
+const pageDescription = description ?? t.meta?.description ?? "";
 ---
 
 <html lang={lang}>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{t.meta?.title || "Kadabra"}</title>
-        <meta name="description" content={t.meta?.description || ""} />
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
         <link rel="icon" href="/favicon.ico" />
         <script is:inline>
             const saved = localStorage.getItem("theme");

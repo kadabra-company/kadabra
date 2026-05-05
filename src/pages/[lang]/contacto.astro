@@ -19,11 +19,12 @@ export function getStaticPaths() {
 const { url } = Astro;
 const lang = getLangFromUrl(url);
 const t = getTranslations(lang);
+const seo = t.meta.pages.contact;
 const c = t.contact_page;
 const whatsapp = t.footer.social.whatsapp.replace(/[^0-9]/g, "");
 ---
 
-<MainLayout>
+<MainLayout title={seo.title} description={seo.description}>
     <main class="bg-background">
         <section class="max-w-2xl mx-auto px-6 pt-24 pb-20">
             <!-- Encabezado -->
@@ -168,7 +169,7 @@ const whatsapp = t.footer.social.whatsapp.replace(/[^0-9]/g, "");
                 <!-- Feedback -->
                 <p
                     id="form-success"
-                    class="hidden text-center text-sm font-semibold text-k-green"
+                    class="hidden text-center text-sm font-semibold text-k-green dark:text-k-green-light"
                 >
                     {c.success}
                 </p>

@@ -1,7 +1,25 @@
 {
   "meta": {
     "title": "Kadabra - Custom Software",
-    "description": "We turn ideas into high-performance functional software."
+    "description": "We turn ideas into high-performance functional software.",
+    "pages": {
+      "home": {
+        "title": "Kadabra - Custom Software",
+        "description": "We build custom tech solutions: software, integrations and consulting for companies in Latin America."
+      },
+      "services": {
+        "title": "Services - Kadabra",
+        "description": "Custom development, integrations, maintenance and tech consulting. See how we can help you."
+      },
+      "about": {
+        "title": "About Us - Kadabra",
+        "description": "Meet Kadabra: our team, values and the way we work to transform businesses with technology."
+      },
+      "contact": {
+        "title": "Contact - Kadabra",
+        "description": "Contact us to quote your project or ask any question. We respond fast."
+      }
+    }
   },
   "nav": {
     "home": "Home",
@@ -13,6 +31,63 @@
   "theme": {
     "toggle": "Toggle theme"
   },
+  "services_page": {
+    "badge": "Services",
+    "title": "What we do",
+    "subtitle": "Custom technology solutions for every stage of your company's growth.",
+    "cta": "Quote this service",
+    "items": [
+      {
+        "id": "development",
+        "title": "Custom development",
+        "summary": "Web, desktop, and mobile software built from scratch according to your processes and needs.",
+        "description": "We design and develop 100% custom applications. No templates or generic solutions — every project starts from a real analysis of your business.",
+        "tags": [
+          "Web",
+          "Desktop",
+          "Mobile",
+          "REST API"
+        ]
+      },
+      {
+        "id": "integrations",
+        "title": "Integrations",
+        "summary": "We connect your systems and tools to centralize information and eliminate data silos.",
+        "description": "We integrate proprietary and third-party platforms via APIs. We work with ERPs like SAP, legacy systems, and cloud services so your entire technology ecosystem works as one.",
+        "tags": [
+          "SAP",
+          "ERP",
+          "APIs",
+          "Webhooks",
+          "ETL"
+        ]
+      },
+      {
+        "id": "consulting",
+        "title": "Consulting",
+        "summary": "We help you understand how to start or accelerate your digital transformation clearly and without wasting resources.",
+        "description": "We analyze your current processes, identify inefficiencies, and recommend the most suitable tools, technologies, and strategies for your business before investing in development.",
+        "tags": [
+          "Diagnosis",
+          "Roadmap",
+          "Tool selection",
+          "Digital transformation"
+        ]
+      },
+      {
+        "id": "maintenance",
+        "title": "Maintenance",
+        "summary": "Support and updates for existing systems that need a new trusted team.",
+        "description": "If your company has software with its own code and no longer works with the original provider, we take over: we audit, document, and continue evolving the system.",
+        "tags": [
+          "Support",
+          "Refactoring",
+          "Documentation",
+          "Updates"
+        ]
+      }
+    ]
+  },
   "home_page": {
     "hero": {
       "badge": "Digital Transformation",
@@ -20,6 +95,77 @@
       "subtitle": "We develop custom technological solutions to optimize processes, integrate systems, and grow your business efficiently.",
       "cta_primary": "Get a Quote",
       "cta_secondary": "Our Services"
+    },
+    "tech_belt": {
+      "label": "Technologies we work with"
+    },
+    "clients": {
+      "label": "Clients",
+      "title": "Companies that trust us",
+      "items": [
+        {
+          "name": "Arti Productos Industriales",
+          "logo": "/logo/logo-arti.png",
+          "href": "https://www.arti.com.pe"
+        },
+        {
+          "name": "Layconsa",
+          "logo": "/logo/logo-layconsa.png",
+          "href": "https://www.layconsa.pe"
+        }
+      ]
+    },
+    "services_section": {
+      "label": "Services",
+      "title": "Everything you need, in one team",
+      "subtitle": "From custom development to strategic consulting.",
+      "cta": "See all services"
+    },
+    "why_us": {
+      "label": "Why Kadabra",
+      "title": "Simple, fast, and reliable",
+      "items": [
+        {
+          "title": "Fast delivery",
+          "description": "Short cycles and functional deliveries from the very first week of the project."
+        },
+        {
+          "title": "Complex integrations",
+          "description": "We connect any system, API or database without friction or downtime."
+        },
+        {
+          "title": "Continuous support",
+          "description": "We don't disappear after delivery. We accompany the growth of every solution."
+        },
+        {
+          "title": "Specialized team",
+          "description": "Senior developers with real experience in high-impact enterprise systems."
+        }
+      ]
+    },
+    "testimonials": {
+      "label": "Clients",
+      "title": "What those who already work with us say",
+      "items": [
+        {
+          "name": "Ana García",
+          "role": "CTO",
+          "company": "RetailMax",
+          "text": "Kadabra transformed our operations in weeks. The SAP integration was flawless and the team was always available."
+        },
+        {
+          "name": "Carlos Méndez",
+          "role": "IT Manager",
+          "company": "LogiCorp",
+          "text": "A team that truly understands business needs. They delivered exactly what they promised, on time."
+        },
+        {
+          "name": "Laura Torres",
+          "role": "Operations Director",
+          "company": "IndusTech",
+          "text": "The post-delivery support makes all the difference. Always available when we need them with real solutions."
+        }
+      ]
     }
   },
   "contact_page": {

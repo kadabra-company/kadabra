@@ -1,7 +1,25 @@
 {
   "meta": {
     "title": "Kadabra - Software a Medida",
-    "description": "Transformamos ideas en software funcional y de alto rendimiento."
+    "description": "Transformamos ideas en software funcional y de alto rendimiento.",
+    "pages": {
+      "home": {
+        "title": "Kadabra - Software a Medida",
+        "description": "Desarrollamos soluciones tecnológicas a medida: software, integraciones y consultoría para empresas en Latinoamérica."
+      },
+      "services": {
+        "title": "Servicios - Kadabra",
+        "description": "Desarrollo a medida, integraciones, mantenimiento y consultoría tecnológica. Conoce cómo podemos ayudarte."
+      },
+      "about": {
+        "title": "Sobre Nosotros - Kadabra",
+        "description": "Conoce a Kadabra: nuestro equipo, valores y la forma en que trabajamos para transformar negocios con tecnología."
+      },
+      "contact": {
+        "title": "Contacto - Kadabra",
+        "description": "Contáctanos para cotizar tu proyecto o resolver cualquier consulta. Respondemos rápido."
+      }
+    }
   },
   "nav": {
     "home": "Inicio",
@@ -13,6 +31,63 @@
   "theme": {
     "toggle": "Cambiar tema"
   },
+  "services_page": {
+    "badge": "Servicios",
+    "title": "Lo que hacemos",
+    "subtitle": "Soluciones tecnológicas a medida para cada etapa del crecimiento de tu empresa.",
+    "cta": "Cotizar este servicio",
+    "items": [
+      {
+        "id": "development",
+        "title": "Desarrollo a medida",
+        "summary": "Software web, escritorio y móvil construido desde cero según tus procesos y necesidades.",
+        "description": "Diseñamos y desarrollamos aplicaciones 100% personalizadas. No usamos plantillas ni soluciones genéricas — cada proyecto parte del análisis real de tu negocio.",
+        "tags": [
+          "Web",
+          "Escritorio",
+          "Móvil",
+          "API REST"
+        ]
+      },
+      {
+        "id": "integrations",
+        "title": "Integraciones",
+        "summary": "Conectamos tus sistemas y herramientas para centralizar la información y eliminar silos de datos.",
+        "description": "Integramos plataformas propias y de terceros mediante APIs. Trabajamos con ERPs como SAP, sistemas legados y servicios en la nube para que todo tu ecosistema tecnológico funcione como uno solo.",
+        "tags": [
+          "SAP",
+          "ERP",
+          "APIs",
+          "Webhooks",
+          "ETL"
+        ]
+      },
+      {
+        "id": "consulting",
+        "title": "Consultoría",
+        "summary": "Te ayudamos a entender cómo iniciar o acelerar tu transformación digital con claridad y sin desperdiciar recursos.",
+        "description": "Analizamos tus procesos actuales, identificamos ineficiencias y te recomendamos las herramientas, tecnologías y estrategias más adecuadas para tu negocio antes de invertir en desarrollo.",
+        "tags": [
+          "Diagnóstico",
+          "Hoja de ruta",
+          "Selección de herramientas",
+          "Transformación digital"
+        ]
+      },
+      {
+        "id": "maintenance",
+        "title": "Mantenimiento",
+        "summary": "Soporte y actualización de sistemas que ya existen pero necesitan un nuevo equipo de confianza.",
+        "description": "Si tu empresa tiene software con código propio y ya no trabaja con el proveedor original, nosotros tomamos el control: auditamos, documentamos y seguimos evolucionando el sistema.",
+        "tags": [
+          "Soporte",
+          "Refactoring",
+          "Documentación",
+          "Actualizaciones"
+        ]
+      }
+    ]
+  },
   "home_page": {
     "hero": {
       "badge": "Transformación Digital",
@@ -20,6 +95,77 @@
       "subtitle": "Desarrollamos soluciones tecnológicas a medida para optimizar procesos, integrar sistemas y hacer crecer tu negocio de forma eficiente.",
       "cta_primary": "Cotizar Proyecto",
       "cta_secondary": "Ver Servicios"
+    },
+    "tech_belt": {
+      "label": "Tecnologías con las que trabajamos"
+    },
+    "clients": {
+      "label": "Clientes",
+      "title": "Empresas que confían en nosotros",
+      "items": [
+        {
+          "name": "Arti Productos Industriales",
+          "logo": "/logo/logo-arti.png",
+          "href": "https://www.arti.com.pe"
+        },
+        {
+          "name": "Layconsa",
+          "logo": "/logo/logo-layconsa.png",
+          "href": "https://www.layconsa.pe"
+        }
+      ]
+    },
+    "services_section": {
+      "label": "Servicios",
+      "title": "Todo lo que necesitas, en un solo equipo",
+      "subtitle": "Desde el desarrollo a medida hasta la consultoría estratégica.",
+      "cta": "Ver todos los servicios"
+    },
+    "why_us": {
+      "label": "Por qué Kadabra",
+      "title": "Simples, rápidos y confiables",
+      "items": [
+        {
+          "title": "Velocidad de entrega",
+          "description": "Ciclos cortos y entregas funcionales desde la primera semana del proyecto."
+        },
+        {
+          "title": "Integraciones complejas",
+          "description": "Conectamos cualquier sistema, API o base de datos sin fricciones ni downtime."
+        },
+        {
+          "title": "Soporte continuo",
+          "description": "No desaparecemos tras la entrega. Acompañamos el crecimiento de cada solución."
+        },
+        {
+          "title": "Equipo especializado",
+          "description": "Desarrolladores seniors con experiencia real en sistemas empresariales de alto impacto."
+        }
+      ]
+    },
+    "testimonials": {
+      "label": "Clientes",
+      "title": "Lo que dicen quienes ya trabajan con nosotros",
+      "items": [
+        {
+          "name": "Ana García",
+          "role": "CTO",
+          "company": "RetailMax",
+          "text": "Kadabra transformó nuestra operación en semanas. La integración con SAP fue impecable y el equipo siempre estuvo disponible."
+        },
+        {
+          "name": "Carlos Méndez",
+          "role": "Gerente de IT",
+          "company": "LogiCorp",
+          "text": "Un equipo que realmente entiende las necesidades del negocio. Entregaron exactamente lo que prometieron, a tiempo."
+        },
+        {
+          "name": "Laura Torres",
+          "role": "Directora de Operaciones",
+          "company": "IndusTech",
+          "text": "El soporte post-entrega marca la diferencia. Siempre disponibles cuando los necesitamos y con soluciones reales."
+        }
+      ]
     }
   },
   "contact_page": {

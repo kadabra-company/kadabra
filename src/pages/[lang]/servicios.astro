@@ -1,0 +1,136 @@
+---
+import MainLayout from "../../layouts/main-layout.astro";
+import { Code2, GitMerge, Wrench, Lightbulb } from "lucide-astro";
+import { getLangFromUrl, getTranslations } from "../../lib/i18n";
+import IllustrationDevelopment from "../../components/icons/illustration-development.astro";
+import IllustrationIntegrations from "../../components/icons/illustration-integrations.astro";
+import IllustrationMaintenance from "../../components/icons/illustration-maintenance.astro";
+import IllustrationConsulting from "../../components/icons/illustration-consulting.astro";
+
+/**
+ * Requerido en toda página dentro de [lang]/ con rutas dinámicas.
+ * Astro la ejecuta automáticamente en build para saber qué versiones
+ * de esta página generar, una por cada idioma soportado.
+ * @returns Lista de parámetros de ruta estática
+ */
+export function getStaticPaths() {
+    return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const { url } = Astro;
+const lang = getLangFromUrl(url);
+const t = getTranslations(lang);
+const seo = t.meta.pages.services;
+const s = t.services_page;
+
+// Icono pequeño por id de servicio (cards resumen)
+const icons: Record<string, any> = {
+    development: Code2,
+    integrations: GitMerge,
+    maintenance: Wrench,
+    consulting: Lightbulb,
+};
+
+// Ilustración grande por id de servicio
+const illustrations: Record<string, any> = {
+    development: IllustrationDevelopment,
+    integrations: IllustrationIntegrations,
+    maintenance: IllustrationMaintenance,
+    consulting: IllustrationConsulting,
+};
+---
+
+<MainLayout title={seo.title} description={seo.description}>
+    <main class="bg-background">
+
+        <!-- Hero -->
+        <section class="relative overflow-hidden bg-background">
+            <div class="absolute inset-0 -z-10">
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-200 h-125 bg-k-green/10 rounded-full blur-3xl"></div>
+            </div>
+            <div class="max-w-7xl mx-auto px-6 pt-32 pb-20 flex flex-col items-center text-center gap-6">
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-foreground leading-tight">
+                    {s.title}
+                </h1>
+                <p class="text-lg md:text-xl text-muted-foreground max-w-2xl">
+                    {s.subtitle}
+                </p>
+
+                <!-- Cards resumen -->
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full mt-6">
+                    {s.items.map((item) => {
+                        const Icon = icons[item.id];
+                        return (
+                            <a
+                                href={`#${item.id}`}
+                                class="flex flex-col items-start gap-3 p-5 rounded-2xl border border-border bg-card hover:border-k-green/50 hover:-translate-y-1 transition-all text-left"
+                            >
+                                <div class="p-2.5 rounded-xl bg-k-green/10 text-k-green dark:text-k-green-light">
+                                    <Icon class="h-5 w-5" />
+                                </div>
+                                <p class="font-bold text-foreground">{item.title}</p>
+                                <p class="text-sm text-muted-foreground leading-relaxed">{item.summary}</p>
+                            </a>
+                        );
+                    })}
+                </div>
+            </div>
+        </section>
+
+        <!-- Detalle de cada servicio -->
+        {s.items.map((item, i) => {
+            const Icon = icons[item.id];
+            const Illustration = illustrations[item.id];
+            const isEven = i % 2 === 0;
+            return (
+                <section
+                    id={item.id}
+                    class={`py-20 border-t border-border ${isEven ? "bg-card" : "bg-background"}`}
+                >
+                    <div class="max-w-7xl mx-auto px-6">
+                        <div class="grid md:grid-cols-2 gap-12 items-center">
+
+                            <!-- Columna texto -->
+                            <div class={`flex flex-col gap-6 ${isEven ? "" : "md:order-2"}`}>
+                                <div class="flex items-center gap-3">
+                                    <div class="p-2.5 rounded-xl bg-k-green/10 text-k-green dark:text-k-green-light">
+                                        <Icon class="h-5 w-5" />
+                                    </div>
+                                    <h2 class="text-2xl md:text-3xl font-bold text-foreground">
+                                        {item.title}
+                                    </h2>
+                                </div>
+                                <p class="text-lg text-muted-foreground leading-relaxed">
+                                    {item.description}
+                                </p>
+                                <!-- Tags -->
+                                <div class="flex flex-wrap gap-2">
+                                    {item.tags.map((tag) => (
+                                        <span class="px-3 py-1 rounded-full text-xs font-semibold border border-k-green/30 text-k-green dark:text-k-green-light bg-k-green/5">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                                <a
+                                    href={`/${lang}/contacto`}
+                                    class="inline-flex w-fit bg-k-green hover:bg-k-green-dark text-primary-foreground px-6 py-3 rounded-xl font-bold text-sm tracking-wide transition-all active:scale-[0.97] border-2 border-k-green-light"
+                                >
+                                    {s.cta}
+                                </a>
+                            </div>
+
+                            <!-- Columna ilustración -->
+                            <div class={`flex items-center justify-center ${isEven ? "md:order-2" : ""}`}>
+                                <div class="w-full aspect-video rounded-3xl border border-border bg-background p-8 text-k-green dark:text-k-green-light">
+                                    <Illustration />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            );
+        })}
+
+    </main>
+</MainLayout>
