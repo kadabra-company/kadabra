@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.kadabra.com.pe',
+  site: 'https://www.kadabracompany.com',
   integrations: [sitemap()],
 
   vite: {

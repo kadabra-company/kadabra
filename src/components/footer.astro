@@ -8,6 +8,7 @@ const lang = getLangFromUrl(url);
 const t = getTranslations(lang);
 
 const year = new Date().getFullYear();
+const whatsapp = t.footer.social.whatsapp.replace(/[^0-9]/g, "");
 ---
 
 <footer class="border-t border-border bg-card mt-auto">
@@ -86,7 +87,7 @@ const year = new Date().getFullYear();
 
                     <!-- WhatsApp -->
                     <a
-                        href={`https://wa.me/${t.footer.social.whatsapp.replace(/[^0-9]/g, "")}`}
+                        href={`https://wa.me/${whatsapp}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="WhatsApp"
@@ -105,4 +106,17 @@ const year = new Date().getFullYear();
             © {year} Kadabra. {t.footer.copyright}
         </div>
     </div>
+
+    <!-- Botón flotante WhatsApp -->
+    <a
+        href={`https://wa.me/${whatsapp}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={t.contact_page.whatsapp_label}
+        class="whatsapp-fab"
+    >
+        <WhatsappIcon class="h-6 w-6" />
+        <span class="whatsapp-fab-tooltip">{t.contact_page.whatsapp_label}</span>
+        <span class="whatsapp-fab-badge" aria-hidden="true">1</span>
+    </a>
 </footer>

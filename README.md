@@ -5,6 +5,7 @@
 
   **Sitio web corporativo de Kadabra**
 
+  ![Version](https://img.shields.io/badge/version-0.1.0-006239?style=flat)
   ![Astro](https://img.shields.io/badge/Astro-6.1-FF5D01?style=flat&logo=astro&logoColor=white)
   ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4.2-38BDF8?style=flat&logo=tailwindcss&logoColor=white)
   ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat&logo=typescript&logoColor=white)
@@ -27,6 +28,8 @@ Características principales:
 - SEO por página: `<title>` y `<meta description>` únicos en cada ruta
 - Sitemap generado automáticamente en `/sitemap-index.xml`
 - Página 404 personalizada con link de vuelta al inicio
+- Botón flotante de WhatsApp visible en todas las páginas, con animación de entrada, anillo expansivo y badge de notificación
+- Sección de clientes con tooltip mostrando el nombre de la empresa al hacer hover
 
 ---
 
@@ -39,13 +42,14 @@ kadabra/
 │   └── logo/
 │       ├── main-logo.png            # Logo principal de la marca
 │       ├── logo-arti.png            # Logo cliente Arti Productos Industriales
-│       └── logo-layconsa.png        # Logo cliente Layconsa
+│       ├── logo-layconsa.png        # Logo cliente Layconsa
+│       └── logo-umbral.png          # Logo cliente Umbral Centro Cultural
 │
 ├── src/
 │   ├── components/
 │   │   ├── navbar.astro             # Navbar sticky con logo, links, tema e idioma
 │   │   ├── hero.astro               # Sección hero de la homepage
-│   │   ├── footer.astro             # Footer con redes sociales y contacto
+│   │   ├── footer.astro             # Footer con redes sociales, contacto y botón flotante de WhatsApp
 │   │   ├── tech-belt.astro          # Carrusel animado de tecnologías (21 iconos SVG)
 │   │   ├── icons/
 │   │   │   ├── whatsapp-icon.astro  # Icono SVG de WhatsApp reutilizable
@@ -196,7 +200,7 @@ Astro genera la nueva ruta estática con el JSON del idioma elegido
 ### Instalación
 
 ```bash
-git clone https://github.com/cristhian-apaza/kadabra.git
+git clone https://github.com/kadabra-company/kadabra.git
 cd kadabra
 npm install
 ```

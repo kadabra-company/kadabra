@@ -112,6 +112,11 @@
           "name": "Layconsa",
           "logo": "/logo/logo-layconsa.png",
           "href": "https://www.layconsa.pe"
+        },
+        {
+          "name": "Umbral Centro Cultural",
+          "logo": "/logo/logo-umbral.png",
+          "href": "https://umbralcentrocultural.com/"
         }
       ]
     },
@@ -325,7 +330,7 @@
     "social": {
       "linkedin": "https://www.linkedin.com/company/kadabra-company",
       "github": "https://github.com/kadabra-company",
-      "email": "c.apaza@icloud.com",
+      "email": "cristhian.apaza@kadabracompany.com",
       "whatsapp": "+51974508218"
     }
   }

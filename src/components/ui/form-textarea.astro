@@ -6,6 +6,7 @@ interface Props {
     placeholder?: string;
     rows?: number;
     required?: boolean;
+    maxlength?: number;
 }
 
 const {
@@ -15,6 +16,7 @@ const {
     placeholder,
     rows = 5,
     required = false,
+    maxlength,
 } = Astro.props;
 ---
 
@@ -31,6 +33,7 @@ const {
         rows={rows}
         placeholder={placeholder}
         required={required}
+        maxlength={maxlength}
         class="bg-card border border-border rounded-xl px-3.5 py-2.5 text-sm text-foreground w-full outline-none focus:border-k-green focus:ring-2 focus:ring-k-green/20 transition-colors placeholder:text-muted-foreground resize-none"
     ></textarea>
 </div>

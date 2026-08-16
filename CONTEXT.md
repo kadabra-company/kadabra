@@ -18,8 +18,9 @@
 ## Repositorio
 
 - GitHub: `kadabra-company/kadabra` (rama `master`)
+- Versión actual: `0.1.0` (`package.json`)
 - Deploy: Netlify (drag & drop de `/dist` por ahora)
-- Dominio futuro: `https://www.kadabra.com.pe`
+- Dominio: `https://www.kadabracompany.com` (activo)
 - Dev server: `npm run dev` → localhost:4321
 
 ## Estructura de páginas
@@ -72,7 +73,7 @@ Cada página pasa su SEO desde `t.meta.pages.*`.
 src/components/
 ├── navbar.astro         # Sticky, logo, links, toggle tema, selector idioma
 ├── hero.astro           # Typewriter con JetBrains Mono, CTA primario y secundario
-├── footer.astro         # Redes sociales, WhatsApp FAB
+├── footer.astro         # Redes sociales, botón flotante de WhatsApp (visible en todas las páginas)
 ├── tech-belt.astro      # Carrusel marquee con 21 iconos SVG de tecnologías
 ├── icons/
 │   ├── whatsapp-icon.astro
@@ -95,7 +96,9 @@ src/components/
 
 - **Arti Productos Industriales** — `/logo/logo-arti.png` — `https://www.arti.com.pe`
 - **Layconsa** — `/logo/logo-layconsa.png` (fondo blanco) — `https://www.layconsa.pe`
+- **Umbral Centro Cultural** — `/logo/logo-umbral.png` (isotipo, fondo transparente) — `https://umbralcentrocultural.com/`
 - Clases para dark mode del logo: `mix-blend-multiply dark:mix-blend-screen dark:brightness-150`
+- Tooltip con el nombre de la empresa al hacer hover (útil para logos que son solo ícono, sin texto)
 
 ## Web3Forms (formulario de contacto)
 
@@ -107,12 +110,15 @@ src/components/
 
 - `.marquee-track` — carrusel tech belt (pausa en hover, respeta `prefers-reduced-motion`)
 - Cursor typewriter en hero
-- WhatsApp FAB con pulse
+- WhatsApp FAB (renderizado desde `footer.astro`, visible en todas las páginas):
+  - `fab-enter` — aparece con fade + slide-up 1.1s después de cargar la página
+  - `fab-ring` — doble anillo expansivo en bucle (`::before`/`::after`, escalonados)
+  - `fab-badge-pop` — badge rojo de notificación ("1") con animación de entrada
 
 ## astro.config.mjs actual
 
 ```js
-site: 'https://www.kadabra.com.pe'
+site: 'https://www.kadabracompany.com'
 integrations: [sitemap()]
 trailingSlash: 'never'
 i18n: { defaultLocale: 'es', locales: ['es','en'], routing: { prefixDefaultLocale: true } }
@@ -121,5 +127,5 @@ i18n: { defaultLocale: 'es', locales: ['es','en'], routing: { prefixDefaultLocal
 ## Pendientes futuros
 
 - Sección Testimonios (estructura en JSON lista, comentada en index.astro)
-- Comprar dominio `kadabra.com.pe` y configurar en Netlify + DNS
-- Probar envío real del formulario Web3Forms
+- Verificar en Web3Forms que `kadabracompany.com` esté en la lista de dominios permitidos para ese `access_key` (el dominio de envío cambió de kadabra.com.pe)
+- Probar envío real del formulario Web3Forms desde el dominio nuevo

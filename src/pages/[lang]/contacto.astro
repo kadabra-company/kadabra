@@ -3,7 +3,6 @@ import MainLayout from "../../layouts/main-layout.astro";
 import FormInput from "../../components/ui/form-input.astro";
 import FormSelect from "../../components/ui/form-select.astro";
 import FormTextarea from "../../components/ui/form-textarea.astro";
-import WhatsappIcon from "../../components/icons/whatsapp-icon.astro";
 import { getLangFromUrl, getTranslations } from "../../lib/i18n";
 
 /**
@@ -21,7 +20,6 @@ const lang = getLangFromUrl(url);
 const t = getTranslations(lang);
 const seo = t.meta.pages.contact;
 const c = t.contact_page;
-const whatsapp = t.footer.social.whatsapp.replace(/[^0-9]/g, "");
 ---
 
 <MainLayout title={seo.title} description={seo.description}>
@@ -44,11 +42,6 @@ const whatsapp = t.footer.social.whatsapp.replace(/[^0-9]/g, "");
                     type="hidden"
                     name="access_key"
                     value="78d46f44-377b-40a2-9fd6-33ecb30a1322"
-                />
-                <input
-                    type="hidden"
-                    name="subject"
-                    value="Nuevo contacto desde Kadabra WebPage"
                 />
                 <!-- Honeypot anti-spam -->
                 <input type="checkbox" name="botcheck" style="display:none" />
@@ -76,6 +69,7 @@ const whatsapp = t.footer.social.whatsapp.replace(/[^0-9]/g, "");
                         label={c.doc_number.label}
                         placeholder={c.doc_number.placeholder}
                         required
+                        maxlength={20}
                         class="flex-1"
                     />
                 </div>
@@ -88,6 +82,7 @@ const whatsapp = t.footer.social.whatsapp.replace(/[^0-9]/g, "");
                     placeholder={c.name.placeholder}
                     autocomplete="name"
                     required
+                    maxlength={80}
                 />
 
                 <!-- Correo + Teléfono -->
@@ -100,6 +95,7 @@ const whatsapp = t.footer.social.whatsapp.replace(/[^0-9]/g, "");
                         placeholder={c.email.placeholder}
                         autocomplete="email"
                         required
+                        maxlength={50}
                         class="flex-1"
                     />
                     <FormInput
@@ -110,6 +106,7 @@ const whatsapp = t.footer.social.whatsapp.replace(/[^0-9]/g, "");
                         placeholder={c.phone.placeholder}
                         autocomplete="tel"
                         required
+                        maxlength={20}
                         class="flex-1"
                     />
                 </div>
@@ -140,11 +137,12 @@ const whatsapp = t.footer.social.whatsapp.replace(/[^0-9]/g, "");
 
                 <!-- Asunto -->
                 <FormInput
-                    id="subject"
-                    name="subject"
+                    id="topic"
+                    name="topic"
                     label={c.subject.label}
                     placeholder={c.subject.placeholder}
                     required
+                    maxlength={60}
                 />
 
                 <!-- Mensaje -->
@@ -155,6 +153,7 @@ const whatsapp = t.footer.social.whatsapp.replace(/[^0-9]/g, "");
                     placeholder={c.message.placeholder}
                     rows={5}
                     required
+                    maxlength={1000}
                 />
 
                 <!-- Submit -->
@@ -183,23 +182,41 @@ const whatsapp = t.footer.social.whatsapp.replace(/[^0-9]/g, "");
         </section>
     </main>
 
-    <!-- Botón flotante WhatsApp -->
-    <a
-        href={`https://wa.me/${whatsapp}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={c.whatsapp_label}
-        class="whatsapp-fab"
-    >
-        <WhatsappIcon class="h-6 w-6" />
-        <span class="whatsapp-fab-tooltip">{c.whatsapp_label}</span>
-    </a>
-
     <script>
         const form = document.getElementById("contact-form") as HTMLFormElement;
         const btn = document.getElementById("submit-btn") as HTMLButtonElement;
         const success = document.getElementById("form-success")!;
         const error = document.getElementById("form-error")!;
+
+        // Corrige mayúsculas/minúsculas al salir del campo (no mientras se escribe,
+        // para no interrumpir al usuario con saltos de cursor).
+        function toTitleCase(value: string): string {
+            return value
+                .toLowerCase()
+                .split(" ")
+                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(" ");
+        }
+
+        function toSentenceCase(value: string): string {
+            const lower = value.toLowerCase();
+            return lower.charAt(0).toUpperCase() + lower.slice(1);
+        }
+
+        const nameInput = document.getElementById("name") as HTMLInputElement;
+        nameInput?.addEventListener("blur", () => {
+            nameInput.value = toTitleCase(nameInput.value.trim());
+        });
+
+        const topicInput = document.getElementById("topic") as HTMLInputElement;
+        topicInput?.addEventListener("blur", () => {
+            topicInput.value = toSentenceCase(topicInput.value.trim());
+        });
+
+        const emailInput = document.getElementById("email") as HTMLInputElement;
+        emailInput?.addEventListener("blur", () => {
+            emailInput.value = emailInput.value.trim().toLowerCase();
+        });
 
         form?.addEventListener("submit", async (e) => {
             e.preventDefault();
@@ -209,6 +226,12 @@ const whatsapp = t.footer.social.whatsapp.replace(/[^0-9]/g, "");
             success.classList.add("hidden");
             error.classList.add("hidden");
 
+            const data = Object.fromEntries(new FormData(form)) as Record<
+                string,
+                string
+            >;
+            data.subject = `[ Kadabra Web ] - ${data.topic}`;
+
             try {
                 const res = await fetch("https://api.web3forms.com/submit", {
                     method: "POST",
@@ -216,9 +239,7 @@ const whatsapp = t.footer.social.whatsapp.replace(/[^0-9]/g, "");
                         "Content-Type": "application/json",
                         Accept: "application/json",
                     },
-                    body: JSON.stringify(
-                        Object.fromEntries(new FormData(form)),
-                    ),
+                    body: JSON.stringify(data),
                 });
                 const json = await res.json();
                 if (json.success) {
