@@ -1,7 +1,9 @@
 ---
 import { getLangFromUrl, getTranslations } from "../lib/i18n";
-import { Linkedin, Github, Mail, Headset } from "lucide-astro";
+import { Mail, Headset } from "@lucide/astro";
 import WhatsappIcon from "./icons/whatsapp-icon.astro";
+import GithubIcon from "./icons/github-icon.astro";
+import LinkedinIcon from "./icons/linkedin-icon.astro";
 
 const { url } = Astro;
 const lang = getLangFromUrl(url);
@@ -62,7 +64,7 @@ const whatsapp = t.footer.social.whatsapp.replace(/[^0-9]/g, "");
                         aria-label="LinkedIn"
                         class="p-2 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted transition-all"
                     >
-                        <Linkedin class="h-5 w-5" />
+                        <LinkedinIcon class="h-5 w-5" />
                     </a>
 
                     <!-- GitHub -->
@@ -73,7 +75,7 @@ const whatsapp = t.footer.social.whatsapp.replace(/[^0-9]/g, "");
                         aria-label="GitHub"
                         class="p-2 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted transition-all"
                     >
-                        <Github class="h-5 w-5" />
+                        <GithubIcon class="h-5 w-5" />
                     </a>
 
                     <!-- Email -->

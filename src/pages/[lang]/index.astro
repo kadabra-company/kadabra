@@ -3,14 +3,14 @@ import MainLayout from "../../layouts/main-layout.astro";
 import Hero from "../../components/hero.astro";
 import TechBelt from "../../components/tech-belt.astro";
 import {
-    Code2,
+    CodeXml,
     GitMerge,
     Wrench,
     Lightbulb,
     Zap,
     Headset,
     Users,
-} from "lucide-astro";
+} from "@lucide/astro";
 import { getLangFromUrl, getTranslations } from "../../lib/i18n";
 
 /**
@@ -35,7 +35,7 @@ const clients = t.home_page.clients;
 const services = t.services_page.items;
 
 const serviceIcons: Record<string, any> = {
-    development: Code2,
+    development: CodeXml,
     integrations: GitMerge,
     maintenance: Wrench,
     consulting: Lightbulb,
@@ -162,8 +162,6 @@ const whyUsIcons = [Zap, GitMerge, Headset, Users];
                         </a>
                     ))}
                 </div>
-            </div>
-        </section>
             </div>
         </section>
 

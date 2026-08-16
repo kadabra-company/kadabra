@@ -1,6 +1,6 @@
 ---
 import MainLayout from "../../layouts/main-layout.astro";
-import { Code2, GitMerge, Wrench, Lightbulb } from "lucide-astro";
+import { CodeXml, GitMerge, Wrench, Lightbulb } from "@lucide/astro";
 import { getLangFromUrl, getTranslations } from "../../lib/i18n";
 import IllustrationDevelopment from "../../components/icons/illustration-development.astro";
 import IllustrationIntegrations from "../../components/icons/illustration-integrations.astro";
@@ -25,7 +25,7 @@ const s = t.services_page;
 
 // Icono pequeño por id de servicio (cards resumen)
 const icons: Record<string, any> = {
-    development: Code2,
+    development: CodeXml,
     integrations: GitMerge,
     maintenance: Wrench,
     consulting: Lightbulb,
