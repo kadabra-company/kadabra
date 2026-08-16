@@ -6,11 +6,11 @@
 
 ## Stack
 
-- **Astro** v6.1.10 — generador estático
+- **Astro** v7 — generador estático (actualizado desde v6.1.10, upgrade intencional y temprano)
 - **Tailwind CSS** v4 via `@tailwindcss/vite`
-- **TypeScript** v5
+- **TypeScript** v5 (+ `@astrojs/check` como devDependency para `npx astro check`)
 - **@astrojs/sitemap** v3.7
-- **lucide-astro** — iconos UI
+- **@lucide/astro** — iconos UI (migrado desde `lucide-astro`, que quedó deprecado; ver nota abajo)
 - **@fontsource-variable/inter** — fuente body
 - **@fontsource-variable/jetbrains-mono** — fuente hero (font-mono)
 - Node.js >= 22.12.0
@@ -19,8 +19,10 @@
 
 - GitHub: `kadabra-company/kadabra` (rama `master`)
 - Versión actual: `0.1.0` (`package.json`)
-- Deploy: Netlify (drag & drop de `/dist` por ahora)
-- Dominio: `https://www.kadabracompany.com` (activo)
+- Deploy: **Cloudflare Workers**, con Git integration (auto-deploy en cada push a `master`). Config en `wrangler.jsonc` (assets estáticos desde `./dist`, sin adaptador SSR — no hace falta `@astrojs/cloudflare`, el sitio es 100% estático).
+- Dominio: `https://www.kadabracompany.com` (activo) y `kadabracompany.com` (raíz, también conectado directo al Worker) — ambos vía Custom Domains en Cloudflare.
+- DNS: migrado de Namecheap (BasicDNS) a Cloudflare (nameservers `ashton.ns.cloudflare.com` / `zainab.ns.cloudflare.com`). Los registros de correo (MX, SPF, DMARC, autoconfig/autodiscover/mail → privateemail.com) se preservaron intactos.
+- URLs de respaldo de Cloudflare: `kadabra.cristhian-apaza.workers.dev` (producción) y `*-kadabra.cristhian-apaza.workers.dev` (previews por rama que no sea `master`).
 - Dev server: `npm run dev` → localhost:4321
 
 ## Estructura de páginas
@@ -77,6 +79,8 @@ src/components/
 ├── tech-belt.astro      # Carrusel marquee con 21 iconos SVG de tecnologías
 ├── icons/
 │   ├── whatsapp-icon.astro
+│   ├── github-icon.astro                # SVG propio: @lucide/astro eliminó los íconos de marca (Github, Linkedin, etc.) en v1
+│   ├── linkedin-icon.astro              # mismo motivo — path calcado del lucide-astro viejo para que se vean idénticos
 │   ├── illustration-development.astro   # SVG viewBox="0 0 320 240"
 │   ├── illustration-integrations.astro
 │   ├── illustration-maintenance.astro
@@ -102,9 +106,13 @@ src/components/
 
 ## Web3Forms (formulario de contacto)
 
-- `access_key`: `78d46f44-377b-40a2-9fd6-33ecb30a1322`
+- `access_key`: `78d46f44-377b-40a2-9fd6-33ecb30a1322` (plan gratuito)
 - Endpoint: `https://api.web3forms.com/submit`
-- Incluye honeypot `botcheck`
+- Incluye honeypot `botcheck`. **Sin Captcha** (decisión consciente: no restarle conversión a un formulario de cotización) — la protección anti-spam real es el honeypot + "Advanced Spam Filter" activado en el dashboard de Web3Forms.
+- Dashboard Web3Forms configurado: Website URL → `kadabracompany.com`, Recipient Email → `cristhian.apaza@kadabracompany.com` (confirmado que recibe), Sender Name → "Kadabra Web", Advanced Spam Filter → activado, Restrict to Domains / Auto Responder / Intro Text → no disponibles (features Pro).
+- Campo `subject` NO se manda como input fijo: el input visible "Asunto" se renombró a `name="topic"` (evitaba un choque de nombres con un hidden `subject` que quedaba muerto). El JS arma el asunto real antes de enviar: `` `[ Kadabra Web ] - ${data.topic}` ``.
+- `maxlength` por campo: documento 20, nombre 80, correo 50, teléfono 20, asunto 60, mensaje 1000.
+- Autocorrección al salir del campo (`blur`, no en cada tecla): nombre → Title Case, asunto → Sentence Case, correo → minúsculas. El mensaje (textarea) se dejó **sin** autocorrección a propósito (es multi-oración; forzar mayúscula/minúscula rompería siglas y nombres propios).
 
 ## Animaciones (`src/styles/global.css`)
 
@@ -124,8 +132,12 @@ trailingSlash: 'never'
 i18n: { defaultLocale: 'es', locales: ['es','en'], routing: { prefixDefaultLocale: true } }
 ```
 
+## Ojo con esto (bugs históricos ya arreglados, no reintroducir)
+
+- `tsconfig.json` tenía `"exclude": ["dist", "src"]` desde el primer commit — excluía **toda** la carpeta `src` del proyecto de TypeScript, así que nunca se aplicaba `moduleResolution: "Bundler"` (ni el resto de `compilerOptions`) al código real. Causaba errores falsos de "Cannot find module" en paquetes con `exports` modernos (ej. `@lucide/astro`). Ya está en `"exclude": ["dist"]` — si alguna vez alguien vuelve a agregar `"src"` ahí, va a repetirse el problema.
+
 ## Pendientes futuros
 
 - Sección Testimonios (estructura en JSON lista, comentada en index.astro)
-- Verificar en Web3Forms que `kadabracompany.com` esté en la lista de dominios permitidos para ese `access_key` (el dominio de envío cambió de kadabra.com.pe)
-- Probar envío real del formulario Web3Forms desde el dominio nuevo
+- Confirmar si Netlify sigue activo en paralelo (deploy manual viejo) — si ya no se usa, borrar el sitio ahí para no confundir cuál es la versión "real" publicada
+- Decidir si desactivar la URL pública `kadabra.cristhian-apaza.workers.dev` (no es necesario, pero evita contenido duplicado de cara a SEO ya que el dominio real está funcionando)

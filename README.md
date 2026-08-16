@@ -6,10 +6,13 @@
   **Sitio web corporativo de Kadabra**
 
   ![Version](https://img.shields.io/badge/version-0.1.0-006239?style=flat)
-  ![Astro](https://img.shields.io/badge/Astro-6.1-FF5D01?style=flat&logo=astro&logoColor=white)
-  ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4.2-38BDF8?style=flat&logo=tailwindcss&logoColor=white)
+  ![Astro](https://img.shields.io/badge/Astro-7-FF5D01?style=flat&logo=astro&logoColor=white)
+  ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4.3-38BDF8?style=flat&logo=tailwindcss&logoColor=white)
   ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat&logo=typescript&logoColor=white)
   ![Sitemap](https://img.shields.io/badge/@astrojs%2Fsitemap-3.7-FF5D01?style=flat&logo=astro&logoColor=white)
+  ![Cloudflare](https://img.shields.io/badge/Deploy-Cloudflare%20Workers-F38020?style=flat&logo=cloudflare&logoColor=white)
+
+  **[www.kadabracompany.com](https://www.kadabracompany.com)**
 
 </div>
 
@@ -53,6 +56,8 @@ kadabra/
 │   │   ├── tech-belt.astro          # Carrusel animado de tecnologías (21 iconos SVG)
 │   │   ├── icons/
 │   │   │   ├── whatsapp-icon.astro  # Icono SVG de WhatsApp reutilizable
+│   │   │   ├── github-icon.astro    # Icono SVG de GitHub (reemplaza al de @lucide/astro, que eliminó los íconos de marca)
+│   │   │   ├── linkedin-icon.astro  # Icono SVG de LinkedIn (mismo motivo)
 │   │   │   ├── illustration-development.astro   # Ilustración SVG: Desarrollo a medida
 │   │   │   ├── illustration-integrations.astro  # Ilustración SVG: Integraciones
 │   │   │   ├── illustration-maintenance.astro   # Ilustración SVG: Mantenimiento
@@ -93,6 +98,7 @@ kadabra/
 │       └── global.css               # Tailwind v4, @theme, variables CSS, animaciones
 │
 ├── astro.config.mjs                 # Config Astro: site, i18n, sitemap, trailingSlash
+├── wrangler.jsonc                   # Config de deploy en Cloudflare Workers (sirve dist/ como assets estáticos)
 ├── tsconfig.json
 └── package.json
 ```
@@ -221,6 +227,15 @@ npm run preview   # previsualiza el build estático
 ```
 
 ---
+
+## Deploy
+
+El sitio está publicado en **Cloudflare Workers** (assets estáticos, sin servidor), con **Git integration**: cada `git push` a `master` dispara un build y deploy automático — no hay subida manual de archivos.
+
+- **Dominios conectados**: `www.kadabracompany.com` y `kadabracompany.com` (ambos apuntan directo al Worker vía Custom Domains).
+- **Config de build**: comando `npm run build`, assets servidos desde `./dist` (definido en `wrangler.jsonc`).
+- **DNS**: administrado en Cloudflare (nameservers migrados desde Namecheap). El correo (`cristhian.apaza@kadabracompany.com`, vía Namecheap Private Email) sigue funcionando igual — los registros MX/SPF/DMARC se preservaron en la migración.
+- **Formulario de contacto**: usa [Web3Forms](https://web3forms.com) como backend (sin servidor propio) — ver detalle en el flujo de la sección anterior.
 
 ## Autores
 
